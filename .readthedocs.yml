@@ -1,0 +1,16 @@
+version: 2
+
+build:
+  os: "ubuntu-lts-latest"
+  tools:
+    python: "3.13"
+
+sphinx:
+  # Path to your Sphinx configuration file.
+  configuration: docs/conf.py
+
+python:
+  install:
+    - requirements: requirements.txt
+
+formats: []

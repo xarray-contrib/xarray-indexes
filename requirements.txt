@@ -1,0 +1,17 @@
+pooch
+netCDF4
+matplotlib
+sphinx
+sphinx-autobuild>=2021.3.14
+sphinx-copybutton
+sphinx-remove-toctrees
+sphinx-codeautolink
+myst-parser
+myst-nb
+sphinx-book-theme
+numpydoc
+sphinxext-opengraph[social_cards]
+xdggs
+rasterix
+xvec
+git+https://github.com/dcherian/rolodex
