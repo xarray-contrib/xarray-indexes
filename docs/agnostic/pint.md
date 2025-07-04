@@ -80,6 +80,9 @@ or raise on incompatible units:
 
 ```{python}
 quantified.sel(
-    months=ureg.Quantity(10, "m")
+    months=ureg.Quantity(10, "m"),
+    level=200,
 )
 ```
+
+(`pint` considers values without units as "dimensionless")
