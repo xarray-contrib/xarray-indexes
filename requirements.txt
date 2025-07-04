@@ -6,6 +6,7 @@ sphinx-autobuild>=2021.3.14
 sphinx-copybutton
 sphinx-remove-toctrees
 sphinx-codeautolink
+sphinx-design
 myst-parser
 myst-nb
 sphinx-book-theme
@@ -13,5 +14,6 @@ numpydoc
 sphinxext-opengraph[social_cards]
 xdggs
 rasterix
+rioxarray
 xvec
 git+https://github.com/dcherian/rolodex

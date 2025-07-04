@@ -35,6 +35,7 @@ extensions = [
     "sphinx_copybutton",
     "sphinx_remove_toctrees",
     "sphinxext.opengraph",
+    "sphinx_design",
 ]
 
 autodoc_typehints = "none"
@@ -109,4 +110,6 @@ intersphinx_mapping = {
     "pandas": ("https://pandas.pydata.org/pandas-docs/stable", None),
     "numpy": ("https://numpy.org/doc/stable", None),
     "xarray": ("https://docs.xarray.dev/en/stable/", None),
+    "rasterix": ("https://rasterix.readthedocs.io/en/latest/", None),
+    "xvec": ("https://xvec.readthedocs.io/en/stable/", None),
 }
