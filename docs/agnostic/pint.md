@@ -45,7 +45,7 @@ xr.set_options(
 ds = (
     xr.tutorial.open_dataset("eraint_uvz")
     .load()
-    .assign_coords(months=lambda ds: ds["months"].assign_attrs({"units": "months"}))
+    .assign_coords(month=lambda ds: ds["month"].assign_attrs({"units": "months"}))
     .assign(windspeed=lambda ds: np.hypot(ds["u"], ds["v"]))
 )
 ds
