@@ -85,7 +85,7 @@ or raise on incompatible units:
 tags: [raises-exception]
 ---
 quantified.sel(
-    months=ureg.Quantity(10, "m"),
+    month=ureg.Quantity(10, "m"),
     level=200,
 )
 ```
