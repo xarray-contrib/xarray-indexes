@@ -84,13 +84,8 @@ or raise on incompatible units:
 ---
 tags: [raises-exception]
 ---
-quantified.sel(
-    month=ureg.Quantity(10, "m"),
-    level=200,
-)
+quantified.sel(month=ureg.Quantity(10, "m"))
 ```
-
-(`pint` considers values without units as "dimensionless")
 
 ### Numerical operations
 
