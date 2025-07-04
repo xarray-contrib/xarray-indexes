@@ -55,7 +55,7 @@ ds
 
 Now we can quantify to convert arrays with a `"units"` attribute to quantity arrays:
 
-```{python}
+```{code-cell} python
 import cf_xarray.units
 import pint_xarray
 
