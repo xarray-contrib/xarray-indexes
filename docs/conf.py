@@ -112,4 +112,5 @@ intersphinx_mapping = {
     "xarray": ("https://docs.xarray.dev/en/stable/", None),
     "rasterix": ("https://rasterix.readthedocs.io/en/latest/", None),
     "xvec": ("https://xvec.readthedocs.io/en/stable/", None),
+    "geopandas": ("https://geopandas.readthedocs.io/en/stable/", None),
 }
