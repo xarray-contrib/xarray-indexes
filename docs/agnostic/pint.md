@@ -81,6 +81,9 @@ quantified.sel(
 or raise on incompatible units:
 
 ```{code-cell} python
+---
+tags: [raises-exception]
+---
 quantified.sel(
     months=ureg.Quantity(10, "m"),
     level=200,
