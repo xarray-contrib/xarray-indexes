@@ -92,7 +92,7 @@ quantified.sel(
 We can also perform numerical operations, like integration:
 
 ```{code-cell} python
-quantified["windspeed"].integrate("months")
+quantified["windspeed"].integrate("month")
 ```
 
 Note how the units are displayed as `"meter * months / second"` and not the expected `"meter"`? This is caused by `pint` trying avoid implicit conversions as much as possible, which can substantially reduce the amount of computations.
