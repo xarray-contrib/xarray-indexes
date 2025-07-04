@@ -67,7 +67,7 @@ Note how all variables are associated with a {py:class}`pint.Quantity` array, an
 
 ### Selection
 
-Selecting with quantities will do the right thing, converting to the index' units:
+With the `PintIndex`, selecting with quantities will convert the indexers to the index' units:
 
 ```{python}
 quantified.sel(
@@ -76,7 +76,7 @@ quantified.sel(
 )
 ```
 
-or raising on incompatible units:
+or raise on incompatible units:
 
 ```{python}
 quantified.sel(
