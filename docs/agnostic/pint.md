@@ -34,7 +34,7 @@ Learn more at the [pint-xarray](https://pint-xarray.readthedocs.io/en/latest/) d
 
 First we open the dataset and perform some preprocessing:
 
-```{python}
+```{code-cell} python
 import numpy as np
 import xarray as xr
 
@@ -69,7 +69,7 @@ Note how all variables are associated with a {py:class}`pint.Quantity` array, an
 
 With the `PintIndex`, selecting with quantities will convert the indexers to the index' units:
 
-```{python}
+```{code-cell} python
 quantified.sel(
     latitude=slice(ureg.Quantity(4800, "arcmin"), ureg.Quantity(600, "arcmin")),
     longitude=slice(ureg.Quantity(-10, "degree"), ureg.Quantity(np.pi, "radians")),
@@ -78,7 +78,7 @@ quantified.sel(
 
 or raise on incompatible units:
 
-```{python}
+```{code-cell} python
 quantified.sel(
     months=ureg.Quantity(10, "m"),
     level=200,
@@ -91,7 +91,7 @@ quantified.sel(
 
 We can also perform numerical operations, like integration:
 
-```{python}
+```{code-cell} python
 quantified["windspeed"].integrate("months")
 ```
 
