@@ -32,7 +32,7 @@ Learn more at the [pint-xarray](https://pint-xarray.readthedocs.io/en/latest/) d
 
 ## Example
 
-First we open the dataset and perform some preprocessing:
+First we open the dataset, fill in missing `units` attributes, and calculate the length of the vectors for later:
 
 ```{code-cell} python
 import numpy as np
