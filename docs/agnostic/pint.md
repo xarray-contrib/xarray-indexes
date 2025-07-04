@@ -12,9 +12,9 @@ kernelspec:
 ````{grid}
 ```{grid-item}
 :columns: 3
-```{image} https://pint.readthedocs.io/en/latest/_static/logo-full.png
+```{image} https://pint.readthedocs.io/en/latest/_static/logo-full.jpg
 ---
-alt: pint-xarray logo
+alt: pint logo
 width: 200px
 align: center
 ---
