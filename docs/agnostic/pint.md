@@ -70,7 +70,7 @@ Note how all variables are associated with a {py:class}`pint.Quantity` array, an
 With the `PintIndex`, selecting with quantities will convert the indexers to the index' units:
 
 ```{code-cell} python
-ureg = quantified.pint.registry
+ureg = pint_xarray.unit_registry
 
 quantified.sel(
     latitude=slice(ureg.Quantity(4800, "arcmin"), ureg.Quantity(600, "arcmin")),
