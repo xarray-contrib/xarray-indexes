@@ -86,3 +86,13 @@ quantified.sel(
 ```
 
 (`pint` considers values without units as "dimensionless")
+
+### Numerical operations
+
+We can also perform numerical operations, like integration:
+
+```{python}
+quantified["windspeed"].integrate("months")
+```
+
+Note how the units are displayed as `"meter * months / second"` and not the expected `"meter"`? This is caused by `pint` trying avoid implicit conversions as much as possible, which can substantially reduce the amount of computations.
