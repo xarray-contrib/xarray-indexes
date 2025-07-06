@@ -19,3 +19,5 @@ geopandas
 geodatasets
 xvec
 git+https://github.com/dcherian/rolodex
+pint-xarray
+cf_xarray
