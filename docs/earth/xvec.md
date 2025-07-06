@@ -28,7 +28,7 @@ Learn more at the [xvec](https://xvec.readthedocs.io) documentation.
 
 ## Highlights
 
-Xvec is exciting because it illustrates how a new index can help define a new data model --- "\__vector data cube_, which is an n-D array that has either at least one dimension indexed by a 2-D array of vector geometries".
+Xvec's use of custom indexes is exciting because it illustrates how a new Index can help define a new data model --- _vector data cube_: "an n-D array that has either at least one dimension indexed by a 2-D array of vector geometries".
 
 1. Indexing using geometries and associated predicates is supported using `.sel`
 1. A new `.xvec` accessor exposes additional querying functionality.
@@ -88,14 +88,16 @@ cube.sel(county=cube.county[0])
 Lets index to counties that intersect the provided bounding box
 
 ```{code-cell}
-import shapely
+box = shapely.box(-97, 45, -99, 48)
 
-subset = cube.sel(county=shapely.box(-97, 45, -99, 48), method="intersects")
+subset = cube.sel(county=box, method="intersects")
 subset
 ```
 
 Notice how we did that with {py:meth}`xarray.DataArray.sel`?!
 
 ```{code-cell}
-subset.xvec.plot(col="year")
+f, axes = subset.population.xvec.plot(col="year")
+for ax in axes.flat:
+    ax.plot(*box.boundary.xy, color='w')
 ```
