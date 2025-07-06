@@ -44,6 +44,7 @@ tags: [hide-input]
 ---
 import geopandas as gpd
 from geodatasets import get_path
+import shapely
 import xarray as xr
 import xvec
 
