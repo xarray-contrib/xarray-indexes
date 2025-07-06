@@ -27,7 +27,6 @@ blocks/ndpoint
 caption: Domain Agnostic
 hidden:
 ---
-agnostic/xdggs
 agnostic/pint
 ```
 
@@ -39,6 +38,7 @@ hidden:
 earth/xproj
 earth/raster
 earth/xvec
+earth/xdggs
 earth/forecast
 earth/cfvertical
 ```
