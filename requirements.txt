@@ -15,6 +15,8 @@ sphinxext-opengraph[social_cards]
 xdggs
 rasterix
 rioxarray
+geopandas
+geodatasets
 xvec
 git+https://github.com/dcherian/rolodex
 pint-xarray
