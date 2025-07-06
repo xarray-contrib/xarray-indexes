@@ -95,3 +95,7 @@ subset
 ```
 
 Notice how we did that with {py:meth}`xarray.DataArray.sel`?!
+
+```{code-cell}
+subset.xvec.plot(col="year")
+```
