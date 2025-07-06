@@ -9,6 +9,10 @@ kernelspec:
 
 # rolodex: Weather Forecasts
 
+```{seealso}
+Learn more at the [rolodex](https://rolodex.readthedocs.io) documentation.
+```
+
 One way to model forecast output is a datacube with four dimensions :
 
 - 2 spatial dimensions `x` and `y`,
@@ -18,14 +22,23 @@ One way to model forecast output is a datacube with four dimensions :
 There is one ancillary variable: 'valid time' which is the time for which the forecast is made: `valid_time = time + step`
 
 ```{note}
-Note that not all forecast model runs are run for the same length of time! We could model these missing forecasts as NaN values in the output.
+Note that not all forecast model runs are run for the same length of time!
+We could model these missing forecasts as NaN values in the output.
+A further complication is that different forecast systems have different output patterns,
+though most don't have _any_ missing output.
+```
+
+```{margin}
+
 ```
 
 There are many ways one might index weather forecast output.
-These different ways of constructing views of a forecast data are called "Forecast Model Run Collections" (FMRC).
-For reference, see [this classic image](https://www.unidata.ucar.edu/presentations/caron/FmrcPoster.pdf) where the
-y-axis is the 'valid time', and the x-axis is the 'forecast reference or initialization time':
-![FMRC indexing schematic](./fmrc.png)
+These different ways of constructing views of a forecast data are called "Forecast Model Run Collections" (FMRC),
+
+```{figure} fmrc.png
+An illustration of different indexing patterns for weather forecast datasets. The y-axis is the 'valid time', and the x-axis is the 'forecast reference or initialization time'.
+For a high-resolution schematic with expanded description of the different indexing patterns see the [original PDF](https://www.unidata.ucar.edu/presentations/caron/FmrcPoster.pdf).
+```
 
 - "Model Run" : a single model run.
 - "Constant Offset" : all values for a given lead time.
@@ -39,7 +52,7 @@ All of these patterns are "vectorized indexing", though generating the needed in
 `ForecastIndex` encapsulates this logic and,
 
 1. Demonstrates how fairly complex indexing patterns can be abstracted away with a custom Index, and
-1. Again illustrates the value of a custom Index in persisting "state" or extra metadata (here the type of model used).
+1. Again illustrates the value of a custom Index in persisting "state" or extra metadata (here the type of model used "HRRR").
 
 ## Example
 
@@ -90,10 +103,12 @@ time = "2025-01-02T21:00"
         robust=True,
         # edgecolors="#fefefe",
         # linewidths=0.003,
-        aspect=2,
+        aspect=1.45,
         size=5,
+        cbar_kwargs={"orientation": "horizontal"},
     )
 )
+plt.title("")
 plt.axhline(np.datetime64(time), color="k")
 plt.plot(
     cube.time.data[[0, -1, -1, 0, 0]],
@@ -103,12 +118,14 @@ plt.plot(
     ],
     color="#32CD32",
     lw=2,
-)
+);
 ```
 
 We will index out all forecasts for 2025-01-02 21:00, notice that there are 4 valid forecasts.
 
-And then assign `rolodex.ForecastIndex` to `time`, `step`, `valid_time`. We pass a custom kwarg `model` to indicate the type of forecast model used, here "HRRR".
+And then assign `rolodex.ForecastIndex` to `time`, `step`, `valid_time`.
+
+We pass an optional custom kwarg `model` to indicate the type of forecast model used, here "HRRR". `ForecastIndex` knows about HRRR's output pattern.
 
 ```{code-cell}
 cube = (
