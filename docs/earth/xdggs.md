@@ -30,6 +30,10 @@ Learn more at the [xdggs](https://xdggs.readthedocs.io/en/latest/) documentation
 
 xdggs provides a unified API for interacting with various Discrete Global Grid Systems (DGGS). It does so by parsing out grid metadata from the spatial coordinate containing the cell ids and persisting it on a "meta-index", an index that wraps another index (most commonly a `pandas` index).
 
+```{figure} h3.png
+The [H3 grid](https://h3geo.org), a hexagonal DGGS designed for navigation on land.
+```
+
 ## Example
 
 Here's a dataset on a [healpix](https://healpix.sourceforge.io/html/intro.htm) grid:
