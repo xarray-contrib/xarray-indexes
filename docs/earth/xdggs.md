@@ -12,7 +12,7 @@ kernelspec:
 ````{grid}
 ```{grid-item}
 :columns: 3
-```{image} https://xdggs.readthedocs.io/en/latest/_static/logos/xdggs_logo.png
+```{image} https://xdggs.readthedocs.io/en/latest/_static/xdggs_logo.png
 ---
 alt: xdggs logo
 width: 200px
