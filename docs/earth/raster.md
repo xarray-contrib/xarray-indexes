@@ -98,7 +98,22 @@ Here is a simple example. We slice the input dataset in to two
 ```{code-cell}
 left = da.isel(x=slice(150))
 right = da.isel(x=slice(150, None))
-left
+```
+
+Let's look at the bounding boxes for the sliced datasets
+
+```{code-cell}
+---
+tags: [hide-input]
+---
+import matplotlib.pyplot as plt
+
+def plot_bbox(bbox):
+    x0, y0, x1, y1 = bbox
+    plt.plot([x0, x0, x1, x1, x0], [y0, y1, y1, y0, y0])
+
+plot_bbox(left.xindexes["x"].bbox)
+plot_bbox(right.xindexes["x"].bbox)
 ```
 
 Concatenating these two along x preserves the RasterIndex!
@@ -107,6 +122,15 @@ Concatenating these two along x preserves the RasterIndex!
 combined = xr.concat([left, right], dim="x")
 combined
 ```
+
+```{code-cell}
+---
+tags: [hide-input]
+---
+plot_bbox(combined.xindexes["x"].bbox)
+```
+
+The coordinates on the combined dataset is equal to the original dataset
 
 ```{code-cell}
 combined.xindexes["x"].equals(da.xindexes["x"])
