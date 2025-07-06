@@ -113,6 +113,7 @@ intersphinx_mapping = {
     "rasterix": ("https://rasterix.readthedocs.io/en/latest/", None),
     "shapely": ("https://shapely.readthedocs.io/en/latest/", None),
     "xvec": ("https://xvec.readthedocs.io/en/stable/", None),
+    "xdggs": ("https://xdggs.readthedocs.io/en/latest/", None),
     "geopandas": ("https://geopandas.readthedocs.io/en/stable/", None),
     "pint-xarray": ("https://pint-xarray.readthedocs.io/en/latest/", None),
     "pint": ("https://pint.readthedocs.io/en/stable/", None),
