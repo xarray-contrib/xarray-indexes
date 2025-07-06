@@ -39,7 +39,7 @@ Rasterix uses a function {py:func}`rasterix.assign_index`.
 
 ## Example
 
-Here is a TIFF file opened with rioxarray. TIFF files commonly do not contain explicit coordinate variables but contain an affine transform.
+Here is a GeoTIFF file opened with rioxarray. GeoTIFF files *do not contain explicit coordinate arrays*, instead they commonly store the coefficients of an affine transform that software libraries use to calculate the coordinates.
 
 On reading, we set `"parse_coordinates": False` to tell rioxarray to not generate coordinate variables.
 
