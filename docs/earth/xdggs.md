@@ -60,4 +60,10 @@ We can also have a look at the parsed metadata:
 decoded.dggs.grid_info
 ```
 
+Here's how the dataset looks:
+
+```{code-cell} python
+decoded["air"].dggs.explore(alpha=0.8)
+```
+
 In a future version of `xdggs` this may also support more operations, like alignment, selection using parent cell ids, or lazy coordinates for cell centers / cell boundaries.
