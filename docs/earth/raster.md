@@ -17,6 +17,7 @@ kernelspec:
 alt: Alt text
 width: 200px
 align: center
+class: dark-light
 ---
 ```
 ```{grid-item}
