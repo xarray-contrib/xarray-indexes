@@ -32,7 +32,7 @@ Learn more at the [xvec](https://xvec.readthedocs.io) documentation.
 A more general definition is "a data cube that contains geometries as variables (e.g. moving features or time-evolving shapes)".
 ```
 
-Xvec's use of custom indexes is exciting because it illustrates how a new Index can help define a new data model --- _vector data cube_: "an n-D array that has either at least one dimension indexed by a 2-D array of vector geometries".
+Xvec's use of custom indexes is exciting because it illustrates how a new Index can help define a new data model --- _vector data cube_: "an n-D array that has either at least one dimension indexed by a 1-D array of vector geometries".
 
 1. Indexing using geometries and associated predicates is supported using `.sel`
 1. A new `.xvec` accessor exposes additional querying functionality.
