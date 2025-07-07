@@ -101,6 +101,7 @@ html_context = {
     "doc_path": "doc",
 }
 html_theme_options = {
+    "use_edit_page_button": True,
     "logo": {
         "text": "Xarray Indexes Gallery",
         "image_light": "_static/logos/Xarray_Icon_Final_hacked.svg",
