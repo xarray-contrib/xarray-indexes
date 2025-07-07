@@ -7,9 +7,7 @@
   --xr-font-color2: var(--pst-color-text-base);
   --xr-font-color3: var(--pst-color-text-base);
   --xr-border-color: hsl(from var(--pst-color-text-base) h s calc(l + 40));
-  --xr-disabled-color: hsl(
-    from var(--pst-color-text-base) h s calc(l + 40)
-  );
+  --xr-disabled-color: hsl(from var(--pst-color-text-base) h s calc(l + 40));
   --xr-background-color: var(--pst-color-on-background);
   --xr-background-color-row-even: hsl(
     from var(--pst-color-on-background) h s calc(l - 5)
@@ -24,9 +22,7 @@
 
 html[data-theme="dark"] .xr-wrap {
   --xr-border-color: hsl(from var(--pst-color-text-base) h s calc(l - 40));
-  --xr-disabled-color: hsl(
-    from var(--pst-color-text-base) h s calc(l - 40)
-  );
+  --xr-disabled-color: hsl(from var(--pst-color-text-base) h s calc(l - 40));
   --xr-background-color-row-even: hsl(
     from var(--pst-color-on-background) h s calc(l + 5)
   );
