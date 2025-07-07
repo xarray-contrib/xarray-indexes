@@ -8,10 +8,12 @@ well suited for working with n-dimensional, rectilinear gridded datasets
 commonly found in scientific data analysis, especially in the geosciences.
 
 ```{figure} _static/figs/xarray-dataset-diagram-legacy.png
-:alt: Xarray data model
-:align: center
-:width: 500px
-:class: dark-light
+---
+alt: Xarray data model
+align: center
+width: 500px
+class: dark-light
+---
 An illustration of the Xarray data model.
 ```
 
@@ -22,10 +24,12 @@ datasets including sparse data, curvilinear or irregular grids, staggered grids,
 discrete global grids and vector data cubes.
 
 ```{figure} _static/figs/xarray-dataset-diagram-new.png
-:alt: Xarray data model
-:align: center
-:width: 500px
-:class: dark-light
+---
+alt: Xarray data model
+align: center
+width: 500px
+class: dark-light
+---
 A better illustration of the variety of Xarray datasets in the wild.
 ```
 
@@ -46,9 +50,7 @@ While Xarray still follows the same approach as its default behavior, it has
 also become much more flexible: an {py:class}`xarray.Dataset` or
 {py:class}`xarray.DataArray` may now have one or more custom
 {py:class}`xarray.Index` objects each associated with their own coordinates of
-arbitrary dimension(s). Goodbye {term}`"dimension" coordinate
-<xarray:Dimension coordinate>` vs. {term}`"non-dimension" coordinate
-<xarray:Non-dimension coordinate>` and welcome
+arbitrary dimension(s). Goodbye {term}`"dimension" coordinate <xarray:Dimension coordinate>` vs. {term}`"non-dimension" coordinate <xarray:Non-dimension coordinate>` and welcome
 {term}`"indexed" coordinate <xarray:Indexed coordinate>` vs.
 {term}`"non-indexed" coordinate <xarray:Non-indexed coordinate>`!
 
@@ -62,7 +64,6 @@ a powerful extension mechanism that is complementary to
 [accessors](https://docs.xarray.dev/en/stable/internals/extending-xarray.html)
 and [IO
 backends](https://docs.xarray.dev/en/stable/internals/how-to-add-new-backend.html).
-
 
 ## What is this website?
 
