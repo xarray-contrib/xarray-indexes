@@ -1,3 +1,8 @@
+.navbar-brand .logo__image {
+  /* avoid too big logo */
+  height: 150px;
+}
+
 .xr-wrap {
   /* workaround when (ipy)widgets are present in output cells
    * https://github.com/xarray-contrib/xarray-indexes/issues/14
