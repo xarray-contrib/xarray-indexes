@@ -79,6 +79,10 @@ of the potential of this feature and will serve as a good reference for
 implementing custom indexes (or simply find the existing ones that fulfill your
 needs).
 
+
+## Contribution
+
+Your additions to this gallery are very welcome, particularly for fields outside the Earth Sciences! Please open a pull request on [our GitHub repository](https://github.com/xarray-contrib/xarray-indexes)
 ```{toctree}
 ---
 caption: Built-in
