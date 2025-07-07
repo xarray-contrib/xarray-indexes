@@ -21,12 +21,13 @@ class: dark-light
 An illustration of the traditional Xarray data model.
 ```
 
-Over the years, Xarray has been used in an increasing number of domains as a
-convenient, general-purpose Python library for handling n-dimensional labeled
-arrays. Xarray's data structures are now reused for representing a wide range of
-datasets including sparse data, curvilinear or irregular grids, staggered grids,
-discrete global grids, image stacks and vector data cubes. Consequently, we'll
-here expand our minds to consider data structures that are {ref}`much more versatile <xarray-diagram-wild>` 🤯.
+Over the years, Xarray has evolved and has been adopted in an increasing number
+of domains as a convenient, general-purpose Python library for handling
+n-dimensional labeled arrays. Xarray's data structures are now being used for
+representing a wide range of datasets including sparse data, curvilinear or
+irregular grids, staggered grids, discrete global grids, image stacks and vector
+data cubes. Consequently, we'll here expand our minds to consider data
+structures that are {ref}`much more versatile <xarray-diagram-wild>` 🤯.
 
 ```{figure} _static/figs/xarray-dataset-diagram-new.png
 ---
@@ -44,14 +45,18 @@ A better illustration of the variety of Xarray datasets in the wild.
 In order to analyze these increasingly complex data structures in Xarray, we
 require a flexible indexing system.
 
-_What is an index_? This is a common concept in database systems and data-frame
-libraries. Generally speaking:
+- _What is an index?_
+
+This is a common concept in database systems and data-frame libraries. Generally
+speaking:
 
 > An index is a data structure that permits fast data lookup and retrieval.
 
 For example, a {py:class}`pandas.Index` object can be used to efficiently select
 rows of a {py:class}`pandas.DataFrame` by one or more labels. Two different
 DataFrame objects may be combined together thanks to their index.
+
+- _What about Xarray?_
 
 Until recently Xarray exclusively relied on {py:class}`pandas.Index` to allow
 fast label-based selection and alignment of n-dimensional data via the concept
@@ -65,6 +70,8 @@ also become much more flexible: an {py:class}`xarray.Dataset` or
 {py:class}`xarray.Index` objects each associated with their own coordinates of
 arbitrary dimension(s). Goodbye {term}`"dimension" coordinate <xarray:Dimension coordinate>` vs. {term}`"non-dimension" coordinate <xarray:Non-dimension coordinate>` and welcome {term}`"index" coordinate <xarray:Indexed coordinate>`
 vs. {term}`"non-index" coordinate <xarray:Non-indexed coordinate>`!
+
+- _What is an Xarray index?_
 
 {py:class}`xarray.Index` serves a broader purpose than a database index. It
 provides an API that allows dealing with coordinate data and metadata in a
