@@ -22,7 +22,7 @@ Over the years, Xarray has been used in an increasing number of domains as a
 convenient, general-purpose Python library for handling n-dimensional labeled
 arrays. Xarray's data structures are now reused for representing a wide range of
 datasets including sparse data, curvilinear or irregular grids, staggered grids,
-discrete global grids, and vector data cubes. 
+discrete global grids, and vector data cubes.
 Consequently, we'll now expand our minds to consider data structures that are much more versatile 🤯 :
 
 ```{figure} _static/figs/xarray-dataset-diagram-new.png
@@ -37,10 +37,9 @@ A better illustration of the variety of Xarray datasets in the wild.
 
 ## What is an Xarray index?
 
-
 In order to analyze these increasingly complex data structures in Xarray, we require a flexible indexing system.
 
-> An index is a data structure that permits fast lookup and retrieval of subsets of data 
+> An index is a data structure that permits fast lookup and retrieval of subsets of data
 
 For example, a {py:class}`pandas.Index` object can be used to efficiently select rows of a {py:class}`pandas.DataFrame` by one or more labels.
 
@@ -79,10 +78,10 @@ of the potential of this feature and will serve as a good reference for
 implementing custom indexes (or simply find the existing ones that fulfill your
 needs).
 
-
 ## Contribution
 
 Your additions to this gallery are very welcome, particularly for fields outside the Earth Sciences! Please open a pull request on [our GitHub repository](https://github.com/xarray-contrib/xarray-indexes)
+
 ```{toctree}
 ---
 caption: Built-in
