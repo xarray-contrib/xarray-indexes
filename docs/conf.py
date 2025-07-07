@@ -77,7 +77,7 @@ exclude_patterns = ["_build"]
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = "igor"
 
-ogp_site_url = "https://xarray_gallery.readthedocs.io/"
+ogp_site_url = "https://xarray-indexes.readthedocs.io/"
 
 
 # -- Options for HTML output ---------------------------------------------------
@@ -100,10 +100,16 @@ html_context = {
     "github_version": "main",
     "doc_path": "doc",
 }
-html_title = "Xarray Indexes Gallery"
+html_theme_options = {
+    "logo": {
+        "text": "Xarray Indexes Gallery",
+        "image_light": "_static/logos/Xarray_Icon_Final_hacked.svg",
+        "image_dark": "_static/logos/Xarray_Icon_Final_hacked.svg",
+    }
+}
+html_favicon = "_static/logos/Xarray_Icon_Final_hacked.svg"
 html_static_path = ["_static"]
 html_css_files = ["style.css"]
-htmlhelp_basename = "Xarraydoc"
 
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3/", None),
