@@ -69,6 +69,7 @@ indexed
 ```
 
 Note the above object still shows the `time` coordinates has associated `PandasIndex` but the values are now represented in and "IntervalArray" (as indicated by `interval[datetime64[ns], left]`)
+
 ### Indexing
 
 Let's index out a representative value for 2013-05-01 02:00.
