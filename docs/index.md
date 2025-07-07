@@ -22,7 +22,8 @@ Over the years, Xarray has been used in an increasing number of domains as a
 convenient, general-purpose Python library for handling n-dimensional labeled
 arrays. Xarray's data structures are now reused for representing a wide range of
 datasets including sparse data, curvilinear or irregular grids, staggered grids,
-discrete global grids, geospatial raster and vector data cubes.
+discrete global grids, and vector data cubes. 
+Consequently, we'll now expand our minds to consider data structures that are much more versatile 🤯 :
 
 ```{figure} _static/figs/xarray-dataset-diagram-new.png
 ---
