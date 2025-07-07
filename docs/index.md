@@ -37,10 +37,12 @@ A better illustration of the variety of Xarray datasets in the wild.
 
 ## What is an Xarray index?
 
-In a (relational) database, an index is a specific and opaque structure that
-allows fast data lookup and retrieval. Likewise, a {py:class}`pandas.Index`
-object can be used to efficiently select rows of a {py:class}`pandas.DataFrame`
-by one or more labels.
+
+In order to analyze these increasingly complex data structures in Xarray, we require a flexible indexing system.
+
+> An index is a data structure that permits fast lookup and retrieval of subsets of data 
+
+For example, a {py:class}`pandas.Index` object can be used to efficiently select rows of a {py:class}`pandas.DataFrame` by one or more labels.
 
 Until recently Xarray exclusively relied on {py:class}`pandas.Index` to allow
 fast label-based selection of n-dimensional data via the concept of
