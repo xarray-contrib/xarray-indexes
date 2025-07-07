@@ -7,7 +7,7 @@ kernelspec:
   name: python
 ---
 
-# xdggs: DGGSIndex
+# Discrete Global Grid Systems with `xdggs.DGGSIndex`
 
 ````{grid}
 ```{grid-item}

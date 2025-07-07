@@ -7,7 +7,7 @@ kernelspec:
   name: python
 ---
 
-# xproj: CRSIndex
+# Coordinate Reference Systems with `xproj.CRSIndex`
 
 ```{seealso}
 Learn more at the [xproj](https://xproj.readthedocs.io) documentation

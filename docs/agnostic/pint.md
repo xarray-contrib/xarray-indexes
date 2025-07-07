@@ -7,7 +7,7 @@ kernelspec:
   name: python
 ---
 
-# pint-xarray: PintIndex
+# Units with `pint_xarray.PintIndex`
 
 ````{grid}
 ```{grid-item}
