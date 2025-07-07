@@ -137,3 +137,35 @@ combined.xindexes["x"].equals(da.xindexes["x"])
 ```
 
 This functionality extends to [multi-dimsensional tiling](https://rasterix.readthedocs.io/en/latest/raster_index/combining.html#combine-nested) using {py:func}`xarray.combine_nested` too!
+
+### Tracking the affine transform
+
+Let's reopen the same GeoTIFF file using rioxarray (without assigning a raster
+index), slice both the `x` and `y` dimensions with steps > 1 and get the affine
+transform parameters via rioxarray:
+
+```{code-cell}
+temp = xr.open_dataarray(source, engine="rasterio")
+subset_a = temp.isel(x=slice(100, 200, 10), y=slice(200, 300, 20))
+subset_a.rio.transform()
+```
+
+Rioxarray calculates the affine parameters of a dataarray by looking at the
+coordinate data and/or metadata. It maybe caches the results to avoid expensive
+computation, although in some cases like here a re-calculation seems to be
+needed:
+
+```{code-cell}
+subset_a.rio.transform(recalc=True)
+```
+
+The raster index added above eliminates the need to (re)calculate and/or cache
+the affine parameters from coordinate data after an operation on the dataaarray.
+Instead, it tracks and compute affine parameter values during the operation and
+generates (on-demand) coordinate data from these new parameter values:
+
+```{code-cell}
+subset_b = da.isel(x=slice(100, 200, 10), y=slice(200, 300, 20))
+
+subset_b.xindexes["x"].transform()
+```
