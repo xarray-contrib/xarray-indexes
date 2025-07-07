@@ -15,7 +15,7 @@ align: center
 width: 500px
 class: dark-light
 ---
-An illustration of the Xarray data model.
+An illustration of the traditional Xarray data model.
 ```
 
 Over the years, Xarray has been used in an increasing number of domains as a
