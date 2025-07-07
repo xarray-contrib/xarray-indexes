@@ -58,9 +58,11 @@ arbitrary dimension(s). Goodbye {term}`"dimension" coordinate <xarray:Dimension 
 provides an API that allows dealing with coordinate data and metadata in a
 highly customizable way for most common Xarray operations (`isel`, `sel`,
 `align`, `concat`, `stack`...). Xarray indexes are also stateful objects that
-may hold and propagate additional information (arbitrary Python objects) along
-with coordinate labels and attributes. {py:class}`xarray.Index` thus represents
-a powerful extension mechanism that is complementary to
+may hold and propagate additional information as arbitrary Python objects, along
+with coordinate labels and attributes (the propagation of information via custom
+indexes may actually be much more reliable than via coordinate attributes).
+{py:class}`xarray.Index` thus represents a powerful extension mechanism that is
+complementary to
 [accessors](https://docs.xarray.dev/en/stable/internals/extending-xarray.html)
 and [IO
 backends](https://docs.xarray.dev/en/stable/internals/how-to-add-new-backend.html).
