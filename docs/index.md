@@ -5,7 +5,8 @@
 Xarray's data model was initially heavily inspired from the
 [NetCDF](https://www.unidata.ucar.edu/software/netcdf/) file format, making it
 well suited for working with n-dimensional, rectilinear gridded datasets
-commonly found in scientific data analysis, especially in the geosciences.
+commonly found in scientific data analysis, especially in the geosciences. 
+In fact, Xarray has used many versions of the following schematic to convey a "canonical" data structure that are ubiquitous in geosciences (3D datasets with coordinates that are either 2D or 1D):
 
 ```{figure} _static/figs/xarray-dataset-diagram-legacy.png
 ---
