@@ -1,4 +1,17 @@
 .xr-wrap {
+  /* workaround when (ipy)widgets are present in output cells
+   * https://github.com/xarray-contrib/xarray-indexes/issues/14
+   * only rely on pydata-sphinx-theme variables here!
+  */
+  --xr-font-color0: var(--pst-color-text-base);
+  --xr-font-color2: var(--pst-color-text-base);
+  --xr-font-color3: var(--pst-color-text-base);
+  --xr-border-color: hsl(from var(--pst-color-on-background) h s calc(l - 10));
+  --xr-disabled-color: hsl(from var(--pst-color-on-background) h s calc(l - 40));
+  --xr-background-color: var(--pst-color-on-background);
+  --xr-background-color-row-even: hsl(from var(--pst-color-on-background) h s calc(l - 5));
+  --xr-background-color-row-odd: hsl(from var(--pst-color-on-background) h s calc(l - 15));
+
   font-size: 0.85em;
   margin-left: 1.25em;
   padding-left: 1.25em;
