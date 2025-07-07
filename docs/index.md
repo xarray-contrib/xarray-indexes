@@ -10,7 +10,7 @@ caption: Built-in
 hidden:
 ---
 builtin/range
-builtin/pandas
+builtin/pdinterval
 ```
 
 ```{toctree}
