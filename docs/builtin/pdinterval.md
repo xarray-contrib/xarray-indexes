@@ -30,7 +30,7 @@ Learn more at the [Pandas](https://pandas.pydata.org/pandas-docs/stable/user_gui
 
 1. Xarray's built-in support for pandas Index classes extends to more sophisticated classes like {py:class}`pandas.IntervalIndex`.
 1. Xarray now generates such indexes automatically when using {py:meth}`xarray.DataArray.groupby_bins` or {py:meth}`xarray.Dataset.groupby_bins`.
-1. Sadly {py:class}`pandas.IntervalIndex` supports numpy datetimes but not cftime.
+1. Sadly {py:class}`pandas.IntervalIndex` supports numpy datetimes but not [cftime](https://unidata.github.io/cftime/).
 
 ```{important}
 A pandas IntervalIndex models intervals using a single variable. The [Climate and Forecast Conventions](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.11/cf-conventions.html#cell-boundaries), by contrast, model the intervals using  two arrays: the intervals ("bounds" variable) and "central values".
@@ -68,6 +68,7 @@ indexed["time"] = time_bounds
 indexed
 ```
 
+Note the above object still shows the `time` coordinates has associated `PandasIndex` but the values are now represented in and "IntervalArray" (as indicated by `interval[datetime64[ns], left]`)
 ### Indexing
 
 Let's index out a representative value for 2013-05-01 02:00.
