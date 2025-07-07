@@ -6,9 +6,9 @@
   --xr-font-color0: var(--pst-color-text-base);
   --xr-font-color2: var(--pst-color-text-base);
   --xr-font-color3: var(--pst-color-text-base);
-  --xr-border-color: hsl(from var(--pst-color-on-background) h s calc(l - 10));
+  --xr-border-color: hsl(from var(--pst-color-text-base) h s calc(l + 40));
   --xr-disabled-color: hsl(
-    from var(--pst-color-on-background) h s calc(l - 40)
+    from var(--pst-color-text-base) h s calc(l + 40)
   );
   --xr-background-color: var(--pst-color-on-background);
   --xr-background-color-row-even: hsl(
@@ -19,10 +19,21 @@
   );
 
   font-size: 0.85em;
-  margin-left: 1.25em;
-  padding-left: 1.25em;
-  border-left: thin var(--color-foreground-muted) solid;
 }
+
+html[data-theme="dark"] xr-wrap {
+  --xr-border-color: hsl(from var(--pst-color-text-base) h s calc(l - 40));
+  --xr-disabled-color: hsl(
+    from var(--pst-color-text-base) h s calc(l - 40)
+  );
+  --xr-background-color-row-even: hsl(
+    from var(--pst-color-on-background) h s calc(l + 5)
+  );
+  --xr-background-color-row-odd: hsl(
+    from var(--pst-color-on-background) h s calc(l + 15)
+  );
+}
+
 .xr-array-wrap,
 .xr-var-data,
 .xr-var-preview {
