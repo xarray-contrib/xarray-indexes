@@ -90,6 +90,7 @@ multi_indexed.sel(season="DJF", datetime="2013")
 Stacking the "lat" and "lon" dimensions of the example dataset results here in
 the corresponding "lat" and "lon" stacked coordinates both associated with a
 `PandasMultiIndex` by default.
+The underlying data are _reshaped_ to collapse the `lat` and `lon` dimensions to a new `space` dimension.
 
 ```{code-cell} python
 stacked = ds_air.stack(space=("lat", "lon"))
