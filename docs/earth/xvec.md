@@ -7,7 +7,7 @@ kernelspec:
   name: python
 ---
 
-# xvec: GeometryIndex
+# Geometries and Vector Data Cubes with `xvec.GeometryIndex`
 
 ````{grid} 12
 ```{grid-item}

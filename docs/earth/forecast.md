@@ -7,7 +7,7 @@ kernelspec:
   name: python
 ---
 
-# rolodex: Weather Forecasts
+# Weather forecast cubes with `rolodex.ForecastIndex`
 
 ```{seealso}
 Learn more at the [rolodex](https://rolodex.readthedocs.io) documentation.

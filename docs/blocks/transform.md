@@ -1,1 +1,1 @@
-# CoordinateTransformIndex
+# Functional transformations with `CoordinateTransformIndex`
