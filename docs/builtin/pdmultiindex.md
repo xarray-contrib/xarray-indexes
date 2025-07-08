@@ -104,7 +104,7 @@ unstacked = stacked.unstack("space")
 unstacked
 ```
 
-### Create coordinates from a `pandas.MultiIndex`
+### Assigning a `pandas.MultiIndex`
 
 It is easy to wrap an existing {py:class}`pandas.MultiIndex` object into a new Xarray
 Dataset or DataArray.
