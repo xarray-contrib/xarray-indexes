@@ -25,7 +25,7 @@ align: center
 
 1. An {py:class}`xarray.indexes.PandasMultiIndex` is associated with multiple coordinate variables sharing the same dimension.
 1. It permits using `.sel` with labels given for several of those coordinates.
-1. It is the index used by default for `.stack` and `.unstack`.
+1. Create MultiIndexes from PandasIndex using {py:class}`Dataset.stack` and convert back with {py:class}`Dataset.unstack`.
 
 ## Example
 
