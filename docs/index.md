@@ -104,6 +104,7 @@ hidden:
 ---
 builtin/pdindex
 builtin/pdmultiindex
+builtin/pdrange
 builtin/range
 builtin/pdinterval
 ```
