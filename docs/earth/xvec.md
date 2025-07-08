@@ -72,7 +72,7 @@ Note how the `county` dimension is associated with a {py:class}`geopandas.Geomet
 
 ### Assigning
 
-Now we can assign a {py:class}`xvec.GeometryIndex` to `county`.
+Now we can assign an {py:class}`xvec.GeometryIndex` to `county`.
 
 ```{code-cell}
 cube = cube.xvec.set_geom_indexes("county")
