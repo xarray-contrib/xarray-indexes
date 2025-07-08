@@ -7,7 +7,7 @@ kernelspec:
   name: python
 ---
 
-# pandas: IntervalIndex
+# Intervals with `pandas.IntervalIndex`
 
 ````{grid}
 ```{grid-item}

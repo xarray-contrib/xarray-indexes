@@ -7,7 +7,7 @@ kernelspec:
   name: python
 ---
 
-# rasterix: RasterIndex
+# Raster affine transforms with `rasterix.RasterIndex`
 
 ````{grid}
 ```{grid-item}
