@@ -23,9 +23,9 @@ align: center
 
 ## Highlights
 
-1. When opening or constructing a new Dataset or DataArray, Xarray creates by default a {py:class}`xarray.indexes.PandasIndex` -- i.e., a lightweight wrapper around {py:class}`pandas.Index` -- for each {term}`"dimension" coordinate <xarray:Dimension coordinate>`.
+1. {py:class}`xarray.indexes.PandasIndex` can wrap _one dimensional_ {py:class}`pandas.Index` objects to allow indexing along 1D coordinate variables. These indexes can apply to both {term}`"dimension" coordinates <xarray:Dimension coordinate>"` and  {term}`"non-dimension" coordinates <xarray:Non-dimension coordinate>`.
+1. When opening or constructing a new Dataset or DataArray, Xarray creates by default a {py:class}`xarray.indexes.PandasIndex` for each {term}`"dimension" coordinate <xarray:Dimension coordinate>`.
 1. It is possible to either drop those default indexes or skip their creation.
-1. It is possible to manually set a `PandasIndex` for 1-dimensional {term}`"non-dimension" coordinates <xarray:Non-dimension coordinate>` as well.
 
 ## Example
 
