@@ -24,8 +24,8 @@ align: center
 ## Highlights
 
 1. An {py:class}`xarray.indexes.PandasMultiIndex` is associated with multiple coordinate variables sharing the same dimension.
-1. It permits using `.sel` with labels given for several of those coordinates.
-1. Create MultiIndexes from PandasIndex using {py:class}`Dataset.stack` and convert back with {py:class}`Dataset.unstack`.
+1. Create PandasMultiIndex from PandasIndex using {py:meth}`xarray.Dataset.stack` and convert back with {py:meth}`xarray.Dataset.unstack`.
+1. Labels of coordinates associated with a PandasMultiIndex can be passed all at once to `.sel`.
 
 ## Example
 
@@ -52,39 +52,6 @@ ds_air = xr.tutorial.open_dataset("air_temperature")
 ds_air
 ```
 
-### Assigning
-
-We need multiple coordinates sharing the same dimension.
-
-```{code-cell} python
-ds_air = (
-    ds_air
-    .assign_coords(season=ds_air.time.dt.season)
-    .rename_vars(time="datetime")
-    .drop_indexes("datetime")
-)
-
-ds_air
-```
-
-Now we can assign a {py:class}`~xarray.indexes.PandasMultiIndex` to the time
-coordinates.
-
-```{code-cell} python
-multi_indexed = ds_air.set_xindex(["season", "datetime"], xr.indexes.PandasMultiIndex)
-multi_indexed
-```
-
-### Indexing
-
-Contrary to what is shown in {doc}`the default PandasIndex <pdindex>` example,
-it is here possible to provide labels to {py:meth}`xarray.Dataset.sel` for both
-of the multi-index time coordinates.
-
-```{code-cell} python
-multi_indexed.sel(season="DJF", datetime="2013")
-```
-
 ### Stack / Unstack
 
 Stacking the "lat" and "lon" dimensions of the example dataset results here in
@@ -103,6 +70,46 @@ The multi-index allows retrieving the original, unstacked dataset where the
 ```{code-cell} python
 unstacked = stacked.unstack("space")
 unstacked
+```
+
+### Assigning
+
+We can also directly associate a {py:class}`~xarray.indexes.PandasMultiIndex`
+with existing coordinates sharing the same dimension.
+
+```{code-cell} python
+ds_air = (
+    ds_air
+    .assign_coords(season=ds_air.time.dt.season)
+    .rename_vars(time="datetime")
+    .drop_indexes("datetime")
+)
+
+ds_air
+```
+
+```{code-cell} python
+multi_indexed = ds_air.set_xindex(["season", "datetime"], xr.indexes.PandasMultiIndex)
+multi_indexed
+```
+
+### Indexing
+
+Contrary to what is shown in {doc}`the default PandasIndex <pdindex>` example,
+it is here possible to provide labels to {py:meth}`xarray.Dataset.sel` for both
+of the multi-index time coordinates.
+
+```{code-cell} python
+multi_indexed.sel(season="DJF", datetime="2013")
+```
+
+Chaining `.sel` calls for those coordinates each with their own index would
+yield equivalent results, though.
+
+```{code-cell} python
+single_indexed = ds_air.set_xindex("datetime").set_xindex("season")
+
+single_indexed.sel(season="DJF").sel(datetime="2013")
 ```
 
 ### Assigning a `pandas.MultiIndex`
