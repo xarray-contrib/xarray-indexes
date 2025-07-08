@@ -106,7 +106,7 @@ unstacked
 
 ### Create coordinates from a `pandas.MultiIndex`
 
-It is easy to wrap an existing `pandas.MultiIndex` object into a new Xarray
+It is easy to wrap an existing {py:class}`pandas.MultiIndex` object into a new Xarray
 Dataset or DataArray.
 
 ```{code-cell} python
