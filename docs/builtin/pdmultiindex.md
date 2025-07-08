@@ -92,7 +92,7 @@ the corresponding "lat" and "lon" stacked coordinates both associated with a
 `PandasMultiIndex` by default.
 
 ```{code-cell} python
-stacked = multi_indexed.stack(space=("lat", "lon"))
+stacked = ds_air.stack(space=("lat", "lon"))
 stacked
 ```
 
