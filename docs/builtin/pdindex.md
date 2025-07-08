@@ -125,8 +125,18 @@ ds_air.drop_indexes(["time", "lat", "lon"])
 
 ### Skip the creation of default indexes
 
-Like {py:func}`xarray.open_dataset`, default indexes are created for dimension
-coordinates when constructing a new Dataset.
+Let's re-open the example dataset above, this time with no index.
+
+```{code-cell} python
+ds_air_no_index = xr.tutorial.open_dataset(
+    "air_temperature", create_default_indexes=False
+)
+
+ds_air_no_index
+```
+
+Like {py:func}`xarray.open_dataset`, indexes are created by default for
+dimension coordinates when constructing a new Dataset.
 
 ```{code-cell} python
 ds = xr.Dataset(coords={"x": [1, 2], "y": [3, 4, 5]})
@@ -140,7 +150,7 @@ Also when assigning new coordinates.
 ds.assign_coords(u=[10, 20])
 ```
 
-To skip the creation of those default indexes, you need to explicitly create a
+To skip the creation of those default indexes, we need to explicitly create a
 new {py:class}`xarray.Coordinates` object and pass `indexes={}` (empty
 dictionary).
 
