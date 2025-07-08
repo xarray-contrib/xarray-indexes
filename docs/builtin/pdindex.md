@@ -52,9 +52,9 @@ ds_air = xr.tutorial.open_dataset("air_temperature")
 ds_air
 ```
 
-It has created by default a {py:class}`~xarray.indexes.PandasIndex` for each the
-"lat", "lon" and "time" dimension coordinates, as we can also see below via the
-{py:attr}`xarray.Dataset.xindexes` property.
+It has created by default a {py:class}`~xarray.indexes.PandasIndex` for each of
+the "lat", "lon" and "time" dimension coordinates, as we can also see below via
+the {py:attr}`xarray.Dataset.xindexes` property.
 
 ```{code-cell} python
 ds_air.xindexes
@@ -68,8 +68,8 @@ ds_air.sel(time="2013")
 
 ### Set indexes for non-dimension coordinates
 
-Xarray does not automatically create such index for non-dimension coordinates
-like the "season (time)" coordinate added below.
+Xarray does not automatically create an index for non-dimension coordinates like
+the "season (time)" coordinate added below.
 
 ```{code-cell} python
 ds_air.coords["season"] = ds_air.time.dt.season
@@ -102,7 +102,7 @@ ds_extra.sel(season="DJF")
 
 It is not yet supported to provide labels to {py:meth}`xarray.Dataset.sel` for
 multiple index coordinates sharing common dimensions (unless those coordinates
-also share the same index object).
+also share the same index object, e.g., like shown in the {doc}`PandasMultiIndex example <pdmultiindex>`).
 
 ```{code-cell} python
 ---
