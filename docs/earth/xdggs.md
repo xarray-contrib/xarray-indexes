@@ -17,6 +17,7 @@ kernelspec:
 alt: xdggs logo
 width: 200px
 align: center
+class: dark-light
 ---
 ```
 ```{grid-item}
