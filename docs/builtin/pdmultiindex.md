@@ -7,7 +7,7 @@ kernelspec:
   name: python
 ---
 
-# Stick coordinates together with `PandasMultiIndex`
+# Stack and unstack with `PandasMultiIndex`
 
 ````{grid}
 ```{grid-item}
