@@ -23,7 +23,7 @@ align: center
 
 ## Highlights
 
-1. An {py:class}`xarray.indexes.PandasMultiIndex` is associated with multiple coordinates sharing the same dimension.
+1. An {py:class}`xarray.indexes.PandasMultiIndex` is associated with multiple coordinate variables sharing the same dimension.
 1. It permits using `.sel` with labels given for several of those coordinates.
 1. It is the index used by default for `.stack` and `.unstack`.
 
