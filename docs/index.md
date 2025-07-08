@@ -135,5 +135,4 @@ earth/raster
 earth/xvec
 earth/xdggs
 earth/forecast
-earth/cfvertical
 ```

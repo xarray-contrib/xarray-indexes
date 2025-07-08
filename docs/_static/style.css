@@ -3,6 +3,11 @@
   height: 150px;
 }
 
+code.literal {
+  background-color: unset;
+  border: unset;
+}
+
 .xr-wrap {
   /* workaround when (ipy)widgets are present in output cells
    * https://github.com/xarray-contrib/xarray-indexes/issues/14
