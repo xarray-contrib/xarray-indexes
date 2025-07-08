@@ -87,6 +87,23 @@ multi_indexed.sel(season="DJF", datetime="2013")
 
 ### Stack / Unstack
 
+Stacking the "lat" and "lon" dimensions of the example dataset results here in
+the corresponding "lat" and "lon" stacked coordinates both associated with a
+`PandasMultiIndex` by default.
+
+```{code-cell} python
+stacked = multi_indexed.stack(space=("lat", "lon"))
+stacked
+```
+
+The multi-index allows retrieving the original, unstacked dataset where the
+"lat" and "lon" dimension coordinates have their own `PandasIndex`.
+
+```{code-cell} python
+unstacked = stacked.unstack("space")
+unstacked
+```
+
 ### Create coordinates from a `pandas.MultiIndex`
 
 It is easy to wrap an existing `pandas.MultiIndex` object into a new Xarray
