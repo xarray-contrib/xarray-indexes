@@ -28,7 +28,7 @@ kernelspec:
    {doc}`../builtin/range`) and {py:class}`rasterix.RasterIndex` (see
    {doc}`../earth/raster`).
 
-## Example
+## Example (Astronomy)
 
 As a real-world example, let's create a custom
 {py:class}`xarray.indexes.CoordinateTransform` that wraps an
