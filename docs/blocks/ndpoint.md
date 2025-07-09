@@ -115,8 +115,9 @@ The dataset above is represented on a curvilinear grid with 2-dimensional
 `lat_rho` and `lon_rho` coordinate variables (in degrees). The default kd-tree
 structure used by {py:class}`~xarray.indexes.NDPointIndex` isn't best suited for
 these latitude and longitude coordinates. Fortunately, there a way of using
-alternative structures. Here let's use {py:class}`sklearn.neighbors.BallTree`
-with the `haversine` distance metric.
+alternative structures. Here let's use {py:class}`sklearn.neighbors.BallTree`,
+which supports providing distance metrics such as `haversine` that will better
+work with latitude and longitude data.
 
 ```{code-cell} python
 from sklearn.neighbors import BallTree
