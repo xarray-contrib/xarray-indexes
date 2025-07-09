@@ -116,6 +116,7 @@ intersphinx_mapping = {
     "python": ("https://docs.python.org/3/", None),
     "pandas": ("https://pandas.pydata.org/pandas-docs/stable", None),
     "numpy": ("https://numpy.org/doc/stable", None),
+    "scipy": ("https://docs.scipy.org/doc/scipy/", None),
     "xarray": ("https://docs.xarray.dev/en/latest/", None),
     "rasterix": ("https://rasterix.readthedocs.io/en/latest/", None),
     "shapely": ("https://shapely.readthedocs.io/en/latest/", None),
@@ -124,4 +125,5 @@ intersphinx_mapping = {
     "geopandas": ("https://geopandas.readthedocs.io/en/stable/", None),
     "pint-xarray": ("https://pint-xarray.readthedocs.io/en/latest/", None),
     "pint": ("https://pint.readthedocs.io/en/stable/", None),
+    "sklearn": ("https://scikit-learn.org/stable/", None),
 }
