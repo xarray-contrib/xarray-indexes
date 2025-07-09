@@ -33,7 +33,7 @@ Learn more at the [Pandas](https://pandas.pydata.org/pandas-docs/stable/user_gui
 1. Sadly {py:class}`pandas.IntervalIndex` supports numpy datetimes but not [cftime](https://unidata.github.io/cftime/).
 
 ```{important}
-A pandas IntervalIndex models intervals using a single variable. The [Climate and Forecast Conventions](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.11/cf-conventions.html#cell-boundaries), by contrast, model the intervals using  two arrays: the intervals ("bounds" variable) and "central values".
+A pandas IntervalIndex models intervals using a single variable. The [Climate and Forecast Conventions](https://cfconventions.org/Data/cf-conventions/cf-conventions-1.11/cf-conventions.html#cell-boundaries), by contrast, model the intervals using  two arrays: the intervals ("bounds" variable) and "central values". See {ref}`cfinterval` for more.
 ```
 
 ## Example

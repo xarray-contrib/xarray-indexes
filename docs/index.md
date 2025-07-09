@@ -104,6 +104,7 @@ hidden:
 ---
 builtin/range
 builtin/pdinterval
+builtin/cfinterval
 ```
 
 ```{toctree}
