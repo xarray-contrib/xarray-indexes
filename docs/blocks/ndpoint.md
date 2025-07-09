@@ -155,3 +155,27 @@ ds_roms_index = ds_roms.set_xindex(
 )
 ds_roms_index
 ```
+
+### Indexing
+
+```{code-cell} python
+ds_trajectory = xr.Dataset(
+    coords={
+        "lat": ('trajectory', np.linspace(28, 30, 50)),
+        "lon": ('trajectory', np.linspace(-93, -88, 50)),
+    },
+)
+
+ds_roms_selection = ds_roms_index.sel(
+    lat_rho=ds_trajectory.lat,
+    lon_rho=ds_trajectory.lon,
+    method="nearest",
+)
+ds_roms_selection
+```
+
+```{code-cell} python
+
+ds_roms_selection.plot.scatter(x="lat_rho", y="lat_rho", hue="zeta")
+plt.show()
+```
