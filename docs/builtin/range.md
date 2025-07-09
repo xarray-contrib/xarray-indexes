@@ -15,8 +15,9 @@ kernelspec:
    ranges. Fortunately, there is {py:class}`xarray.indexes.RangeIndex` that
    works with real numbers.
 1. Xarray's `RangeIndex` is built on top of
-   {py:class}`xarray.indexes.CoordinateTransformIndex` and therefore supports
-   very large ranges represented as lazy coordinate variables.
+   {py:class}`xarray.indexes.CoordinateTransformIndex` (see
+   {doc}`../blocks/transform`) and therefore supports very large ranges
+   represented as lazy coordinate variables.
 
 ## Example
 

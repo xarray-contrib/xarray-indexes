@@ -124,4 +124,5 @@ intersphinx_mapping = {
     "geopandas": ("https://geopandas.readthedocs.io/en/stable/", None),
     "pint-xarray": ("https://pint-xarray.readthedocs.io/en/latest/", None),
     "pint": ("https://pint.readthedocs.io/en/stable/", None),
+    "astropy": ("https://docs.astropy.org/en/latest/", None),
 }
