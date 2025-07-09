@@ -28,10 +28,6 @@ A further complication is that different forecast systems have different output 
 though most don't have _any_ missing output.
 ```
 
-```{margin}
-
-```
-
 There are many ways one might index weather forecast output.
 These different ways of constructing views of a forecast data are called "Forecast Model Run Collections" (FMRC),
 
