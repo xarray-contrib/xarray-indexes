@@ -93,71 +93,34 @@ from astropy.io import fits
 from astropy.utils.data import get_pkg_data_filename
 
 
-filename = get_pkg_data_filename('l1448/l1448_13co.fits')
-hdu = fits.open(filename)[0]
-wcs = WCS(hdu.header)
-data = hdu.data
+def open_fits_dataarray(filename, item=0):
+   hdu = fits.open(filename)[item]
+   wcs = WCS(hdu.header)
 
-transform = WCSCoordinateTransform(wcs)
-index = xr.indexes.CoordinateTransformIndex(transform)
-coords = xr.Coordinates.from_xindex(index)
+   transform = WCSCoordinateTransform(wcs)
+   index = xr.indexes.CoordinateTransformIndex(transform)
+   coords = xr.Coordinates.from_xindex(index)
 
-ds = xr.Dataset({'primary': (transform.dims, data)}, coords=coords)
-ds
+   return xr.DataArray(
+      hdu.data, coords=coords, dims=transform.dims, attrs={"wcs": wcs}
+   )
+
 ```
 
 ```{code-cell} python
-da_subset = ds.primary.isel(dim2=[45, 50, 55])
+fname = get_pkg_data_filename("galactic_center/gc_2mass_k.fits")
 
-da_subset.plot.pcolormesh(
-    x="pos_eq_ra",
-    y="spect_dopplerVeloc_opt",
-    col="dim2",
-    col_wrap=2,
-);
+da_2d = open_fits_dataarray(fname)
+da_2d
 ```
 
 ```{code-cell} python
-sliced = ds.isel(dim2=50)
-
-ds.primary.isel(dim2=50).plot(subplot_kws=dict(projection=wcs, slices=(50, 'x', 'y')))
+da_2d.plot.pcolormesh(x="pos_eq_ra", y="pos_eq_dec");
 ```
 
 ```{code-cell} python
-filename2 = get_pkg_data_filename('galactic_center/gc_2mass_k.fits')
-hdu2 = fits.open(filename2)[0]
-wcs2 = WCS(hdu2.header)
-data2 = hdu2.data
+fname = get_pkg_data_filename("l1448/l1448_13co.fits")
 
-transform2 = WCSCoordinateTransform(wcs2)
-index2 = xr.indexes.CoordinateTransformIndex(transform2)
-coords2 = xr.Coordinates.from_xindex(index2)
-
-ds2 = xr.Dataset({'primary': (transform2.dims, data2)}, coords=coords2)
-ds2
-```
-
-```{code-cell} python
-ds2.primary.plot.pcolormesh(x="pos_eq_ra", y="pos_eq_dec");
-```
-
-```{code-cell} python
-hdu2 = fits.open("http://data.sunpy.org/sunpy/v1/AIA20110607_063302_0171_lowres.fits")[1]
-wcs2 = WCS(hdu2.header)
-data2 = hdu2.data
-
-transform2 = WCSCoordinateTransform(wcs2)
-index2 = xr.indexes.CoordinateTransformIndex(transform2)
-coords2 = xr.Coordinates.from_xindex(index2)
-
-ds2 = xr.Dataset({'data': (transform2.dims, data2)}, coords=coords2)
-ds2
-```
-
-```{code-cell} python
-ds2.data.plot.pcolormesh(x="pos_helioprojective_lon", y="pos_helioprojective_lat");
-```
-
-```{code-cell} python
-ds2.data.plot(subplot_kws=dict(projection=wcs2), vmin=0, vmax=2000)
+da_3d = open_fits_dataarray(fname)
+da_3d
 ```
