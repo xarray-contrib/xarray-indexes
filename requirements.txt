@@ -21,5 +21,6 @@ xvec
 git+https://github.com/dcherian/rolodex
 pint-xarray
 cf_xarray
+astropy
 git+https://github.com/pydata/xarray
 scikit-learn

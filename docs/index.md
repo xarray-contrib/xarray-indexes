@@ -107,6 +107,7 @@ builtin/pdmultiindex
 builtin/pdrange
 builtin/range
 builtin/pdinterval
+builtin/cfinterval
 ```
 
 ```{toctree}
