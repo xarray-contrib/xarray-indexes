@@ -49,7 +49,7 @@ xr.set_options(
 ```
 
 ```{code-cell} python
-idx = xr.indexes.PandasIndex(pd.RangeIndex(1_000_000_000), dim="x")
+idx = xr.indexes.PandasIndex(pd.RangeIndex(1_000_000), dim="x")
 
 ds = xr.Dataset(coords=xr.Coordinates.from_xindex(idx))
 ds
