@@ -26,7 +26,7 @@ Learn more at the [Pandas](https://pandas.pydata.org/pandas-docs/stable/user_gui
 ```
 ````
 
-# Highlights
+## Highlights
 
 1. Xarray's built-in support for pandas Index classes extends to more sophisticated classes like {py:class}`pandas.IntervalIndex`.
 1. Xarray now generates such indexes automatically when using {py:meth}`xarray.DataArray.groupby_bins` or {py:meth}`xarray.Dataset.groupby_bins`.
