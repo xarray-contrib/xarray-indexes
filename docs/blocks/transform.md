@@ -15,18 +15,20 @@ kernelspec:
    transformations_ -- i.e., by a set of formulas describing the relationship
    between array indices and coordinate labels -- are best handled via an
    {py:class}`xarray.indexes.CoordinateTransformIndex`.
-1. The coordinate variables associated with such index are lazy and therefore
+1. Coordinate variables associated with such index are lazy and therefore
    use very little memory. They may have arbitrary dimensions.
-1. The alignment of datasets and dataarrays may be implemented in an optimal
-   way, i.e., based on coordinate transformation parameters rather than on
-   raw coordinate labels.
+1. Alignment may be implemented in an optimal way, i.e., based on coordinate transformation
+   parameters rather than on raw coordinate labels.
 1. Xarray exposes an abstract {py:class}`~xarray.indexes.CoordinateTransform`
    class to plug in 3rd-party coordinate transformations with support
    of dimension and coordinate variable names (see the example below).
-1. `CoordinateTransformIndex` is often used as a building block by other
-   custom indexes such as {py:class}`xarray.indexes.RangeIndex` (see
-   {doc}`../builtin/range`) and {py:class}`rasterix.RasterIndex` (see
-   {doc}`../earth/raster`).
+
+```{seealso}
+`CoordinateTransformIndex` is often used as a building block by other
+custom indexes such as {py:class}`xarray.indexes.RangeIndex` (see
+{doc}`../builtin/range`) and {py:class}`rasterix.RasterIndex` (see
+{doc}`../earth/raster`).
+```
 
 ## Example (Astronomy)
 
@@ -40,7 +42,7 @@ Systems](https://doi.org/10.5281/zenodo.1188874) used in Astropy.
 ```{note}
 This example is taken and adapted from
 [this gist](https://gist.github.com/Cadair/4a03750868e044ac4bdd6f3a04ed7abc) by
-Stuart Mumford.
+[Stuart Mumford](https://github.com/Cadair).
 
 It only provides basic integration between Astropy's WCS and Xarray
 coordinate transforms. More advanced integration could leverage the
@@ -66,12 +68,8 @@ class WCSCoordinateTransform(xr.indexes.CoordinateTransform):
     """Lightweight adapter class for the World Coordinate Systems (WCS) API.
 
     More info: https://docs.astropy.org/en/latest/wcs/wcsapi.html
-
     """
-    def __init__(
-        self,
-        wcs: WCS,
-    ):
+    def __init__(self, wcs: WCS):
         pixel_axis_names = [
             pan or f"dim{i}"
             for i, pan in enumerate(wcs.pixel_axis_names)
@@ -105,8 +103,6 @@ class WCSCoordinateTransform(xr.indexes.CoordinateTransform):
         pixel = self.wcs.world_to_array_index_values(*world)
 
         return {name: p for name, p in zip(self.dims, pixel)}
-
-
 ```
 
 ```{code-cell} python
@@ -118,6 +114,7 @@ xr.set_options(
     display_expand_indexes=True,
     display_expand_data=True,
 );
+np.set_printoptions(precision=3, threshold=10, edgeitems=2);
 ```
 
 ### Assigning
