@@ -102,6 +102,9 @@ Your additions to this gallery are very welcome, particularly for fields outside
 caption: Built-in
 hidden:
 ---
+builtin/pdindex
+builtin/pdmultiindex
+builtin/pdrange
 builtin/range
 builtin/pdinterval
 builtin/cfinterval
