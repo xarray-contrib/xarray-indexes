@@ -116,7 +116,7 @@ tags: [remove-cell]
 %xmode minimal
 xr.set_options(
     display_expand_indexes=True,
-    display_expand_attrs=False,
+    display_expand_data=True,
 );
 ```
 
@@ -154,6 +154,12 @@ fname = get_pkg_data_filename("galactic_center/gc_2mass_k.fits")
 
 da_2d = open_fits_dataarray(fname)
 da_2d
+```
+
+```{code-cell} python
+# lazy coordinate variables!
+
+da_2d.pos_eq_ra
 ```
 
 ```{code-cell} python
