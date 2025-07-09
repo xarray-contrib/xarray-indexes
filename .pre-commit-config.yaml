@@ -39,12 +39,12 @@ repos:
       - id: nbstripout
         args: [--extra-keys=metadata.kernelspec metadata.language_info.version]
         files: ^docs/
+        exclude: cfinterval.ipynb
 
   - repo: https://github.com/codespell-project/codespell
     rev: v2.4.1
     hooks:
       - id: codespell
-        files: ^rolodex/
         additional_dependencies:
           - tomli
 

@@ -64,7 +64,7 @@ copyright = f"2025-{current_year}, Xarray contributors"
 author = "Xarray Contributors"
 
 # Myst_nb options
-nb_execution_excludepatterns = []
+nb_execution_excludepatterns = ["*cfinterval*"]
 nb_execution_raise_on_error = True
 nb_execution_mode = "cache"
 nb_execution_show_tb = True
@@ -121,7 +121,7 @@ intersphinx_mapping = {
     "shapely": ("https://shapely.readthedocs.io/en/latest/", None),
     "xvec": ("https://xvec.readthedocs.io/en/stable/", None),
     "xdggs": ("https://xdggs.readthedocs.io/en/latest/", None),
-    "geopandas": ("https://geopandas.readthedocs.io/en/stable/", None),
+    "geopandas": ("https://geopandas.org/en/stable/", None),
     "pint-xarray": ("https://pint-xarray.readthedocs.io/en/latest/", None),
     "pint": ("https://pint.readthedocs.io/en/stable/", None),
 }
