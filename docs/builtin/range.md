@@ -12,7 +12,7 @@ kernelspec:
 ## Highlights
 
 1. Pandas has no equivalent of {py:class}`pandas.RangeIndex` for floating point
-   ranges... Fortunately, there is {py:class}`xarray.indexes.RangeIndex` that
+   ranges. Fortunately, there is {py:class}`xarray.indexes.RangeIndex` that
    works with real numbers.
 1. Xarray's `RangeIndex` is built on top of
    {py:class}`xarray.indexes.CoordinateTransformIndex` and therefore supports
