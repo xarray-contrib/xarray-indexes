@@ -18,9 +18,9 @@ kernelspec:
    capabilities.
 1. By default, a {py:class}`scipy.spatial.KDTree` is used under the hood for
    fast lookup of point data. Although experimental, it is possible to plug in
-   alternative structures to `NDPointIndex` (see the advanced example below).
+   alternative structures to `NDPointIndex` (See {ref}`advanced`).
 
-## Basic example
+## Basic Example: Default KDTree
 
 Let's create a dataset with random points.
 
@@ -95,16 +95,12 @@ ds.plot.scatter(x="xx", y="yy", c="k")
 plt.show()
 ```
 
+(advanced)=
+
 ## Advanced example
 
 This example is based on the Regional Ocean Modeling System (ROMS) [Xarray
 example](https://docs.xarray.dev/en/stable/examples/ROMS_ocean_model.html).
-
-```{note}
-An alternative solution to this example is to use
-{py:class}`xarray.indexes.CoordinateTransformIndex` (see {doc}`transform`) with the
-horizontal coordinate transformations defined in ROMS.
-```
 
 ```{code-cell} python
 ds_roms = xr.tutorial.open_dataset("ROMS_example")
@@ -112,10 +108,29 @@ ds_roms
 ```
 
 The dataset above is represented on a curvilinear grid with 2-dimensional
-`lat_rho` and `lon_rho` coordinate variables (in degrees). The default kd-tree
-structure used by {py:class}`~xarray.indexes.NDPointIndex` isn't best suited for
-these latitude and longitude coordinates. Fortunately, there a way of using
-alternative structures. Here let's use {py:class}`sklearn.neighbors.BallTree`,
+`lat_rho` and `lon_rho` coordinate variables (in degrees). We will illustrate sampling a
+straight line trajectory through this field.
+
+```{code-cell} python
+import matplotlib.pyplot as plt
+
+ds_trajectory = xr.Dataset(
+    coords={
+        "lat": ('trajectory', np.linspace(28, 30, 50)),
+        "lon": ('trajectory', np.linspace(-93, -88, 50)),
+    },
+)
+
+ds_roms.salt.isel(s_rho=-1, ocean_time=0).plot(x="lon_rho", y="lat_rho")
+plt.plot(
+    ds_trajectory.lon.data, ds_trajectory.lat.data, marker='.', color='k', ms=4, ls="none",
+)
+plt.show()
+```
+
+The default kd-tree structure used by {py:class}`~xarray.indexes.NDPointIndex`
+isn't best suited for these latitude and longitude coordinates. Fortunately, there
+is a way of using alternative structures. Here let's use {py:class}`sklearn.neighbors.BallTree`,
 which supports providing distance metrics such as `haversine` that will better
 work with latitude and longitude data.
 
@@ -138,7 +153,7 @@ class SklearnGeoBallTreeAdapter(TreeAdapter):
 ```
 
 ```{note}
-Using alternative structures via custom `TreeAdapter` subclasses is an
+Using alternative structures via custom {py:class}`~xarray.indexes.TreeAdapter` subclasses is an
 experimental feature!
 
 The adapter above based on {py:class}`sklearn.neighbors.BallTree` will
@@ -160,13 +175,6 @@ ds_roms_index
 ### Indexing
 
 ```{code-cell} python
-ds_trajectory = xr.Dataset(
-    coords={
-        "lat": ('trajectory', np.linspace(28, 30, 50)),
-        "lon": ('trajectory', np.linspace(-93, -88, 50)),
-    },
-)
-
 ds_roms_selection = ds_roms_index.sel(
     lat_rho=ds_trajectory.lat,
     lon_rho=ds_trajectory.lon,
@@ -176,7 +184,7 @@ ds_roms_selection
 ```
 
 ```{code-cell} python
-
+plt.figure()
 ds_roms_selection.plot.scatter(x="lat_rho", y="lat_rho", hue="zeta")
 plt.show()
 ```
