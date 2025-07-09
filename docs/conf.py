@@ -116,7 +116,7 @@ intersphinx_mapping = {
     "python": ("https://docs.python.org/3/", None),
     "pandas": ("https://pandas.pydata.org/pandas-docs/stable", None),
     "numpy": ("https://numpy.org/doc/stable", None),
-    "xarray": ("https://docs.xarray.dev/en/stable/", None),
+    "xarray": ("https://docs.xarray.dev/en/latest/", None),
     "rasterix": ("https://rasterix.readthedocs.io/en/latest/", None),
     "shapely": ("https://shapely.readthedocs.io/en/latest/", None),
     "xvec": ("https://xvec.readthedocs.io/en/stable/", None),
