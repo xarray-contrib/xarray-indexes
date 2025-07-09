@@ -11,11 +11,43 @@ kernelspec:
 
 ## Highlights
 
+1. The coordinate variables whose values are described by _coordinate
+   transformations_ -- i.e., by a set of formulas describing the relationship
+   between array indices and coordinate labels -- are best handled via an
+   {py:class}`xarray.indexes.CoordinateTransformIndex`.
+1. The coordinate variables associated with such index are lazy and therefore
+   use very little memory. They may have arbitrary dimensions.
+1. The alignment of datasets and dataarrays may be implemented in an optimal
+   way, i.e., based on coordinate transformation parameters rather than on
+   raw coordinate labels.
+1. Xarray exposes an abstract {py:class}`~xarray.indexes.CoordinateTransform`
+   class to plug in 3rd-party coordinate transformations with support
+   of dimension and coordinate variable names (see the example below).
+1. `CoordinateTransformIndex` is often used as a building block by other
+   custom indexes such as {py:class}`xarray.indexes.RangeIndex` (see
+   {doc}`../builtin/range`) and {py:class}`rasterix.RasterIndex` (see
+   {doc}`../earth/raster`).
+
 ## Example
 
-Taken and adapted from
-[here](https://gist.github.com/Cadair/4a03750868e044ac4bdd6f3a04ed7abc) (author:
-Stuart Mumford).
+As a real-world example, let's create a custom
+{py:class}`xarray.indexes.CoordinateTransform` that wraps an
+{py:class}`astropy.wcs.WCS` object. This Xarray coordinate transform adapter
+class simply maps Xarray dimension and coordinate variable names to pixel
+and world axis names of the [shared Python interface for World Coordinate
+Systems](https://doi.org/10.5281/zenodo.1188874) used in Astropy.
+
+```{note}
+This example is taken and adapted from
+[this gist](https://gist.github.com/Cadair/4a03750868e044ac4bdd6f3a04ed7abc) by
+Stuart Mumford.
+
+It only provides basic integration between Astropy's WCS and Xarray
+coordinate transforms. More advanced integration could leverage the
+[slicing capabilities of WCS objects](https://docs.astropy.org/en/latest/wcs/wcsapi.html#slicing-of-wcs-objects)
+in a custom {py:class}`xarray.indexes.CoordinateTransformIndex` subclass.
+
+```
 
 ```{code-cell} python
 from collections.abc import Hashable
@@ -88,6 +120,14 @@ xr.set_options(
 );
 ```
 
+### Assigning
+
+Let's now create a small function that opens a FITS file with Astropy, creates
+an Xarray {py:class}`~xarray.indexes.CoordinateTransformIndex` and its
+associated lazy coordinate variables from the {py:class}`~astropy.wcs.WCS`
+object and returns both the data and coordinates as an
+{py:class}`xarray.DataArray`.
+
 ```{code-cell} python
 from astropy.io import fits
 from astropy.utils.data import get_pkg_data_filename
@@ -107,6 +147,8 @@ def open_fits_dataarray(filename, item=0):
 
 ```
 
+Open a simple image with two celestial axes.
+
 ```{code-cell} python
 fname = get_pkg_data_filename("galactic_center/gc_2mass_k.fits")
 
@@ -117,6 +159,8 @@ da_2d
 ```{code-cell} python
 da_2d.plot.pcolormesh(x="pos_eq_ra", y="pos_eq_dec");
 ```
+
+Open a spectral cube with two celestial axes and one spectral axis.
 
 ```{code-cell} python
 fname = get_pkg_data_filename("l1448/l1448_13co.fits")
