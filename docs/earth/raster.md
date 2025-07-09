@@ -31,7 +31,7 @@ Learn more at the [Rasterix](https://rasterix.readthedocs.io/en/latest/) documen
 
 Rasterix provides a RasterIndex that allows indexing using a functional transformation defined by an _affine transform_.
 
-It uses {py:class}`~xarray.indexes.CoordinateTransformIndex` as a building block. In doing so,
+It uses {py:class}`~xarray.indexes.CoordinateTransformIndex` as a building block (see {doc}`../blocks/transform`). In doing so,
 
 1. RasterIndex eliminates an entire class of bugs where Xarray allows you to add (for example) two datasets with different affine transforms (and/or projections) and return nonsensical outputs.
 1. The associated coordinate variables are lazy, and use very little memory. Thus very large coordinate frames can be represented.
