@@ -35,6 +35,7 @@ Learn more at the [pint-xarray](https://pint-xarray.readthedocs.io/en/latest/) d
 First we open the dataset, fill in missing `units` attributes, and calculate the length of the vectors for later:
 
 ```{code-cell} python
+%xmode minimal
 import numpy as np
 import xarray as xr
 
