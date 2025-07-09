@@ -157,7 +157,12 @@ da_2d
 ```
 
 ```{code-cell} python
-da_2d.plot.pcolormesh(x="pos_eq_ra", y="pos_eq_dec");
+da_2d.plot.pcolormesh(
+    x="pos_eq_ra",
+    y="pos_eq_dec",
+    vmax=1300,
+    cmap="magma",
+);
 ```
 
 Open a spectral cube with two celestial axes and one spectral axis.
