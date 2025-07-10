@@ -31,7 +31,7 @@ though most don't have _any_ missing output.
 There are many ways one might index weather forecast output.
 These different ways of constructing views of a forecast data are called "Forecast Model Run Collections" (FMRC),
 
-```{figure} fmrc.png
+```{figure} ../_static/figs/fmrc.png
 An illustration of different indexing patterns for weather forecast datasets. The y-axis is the 'valid time', and the x-axis is the 'forecast reference or initialization time'.
 For a high-resolution schematic with expanded description of the different indexing patterns see the [original PDF](https://www.unidata.ucar.edu/presentations/caron/FmrcPoster.pdf).
 ```
