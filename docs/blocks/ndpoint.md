@@ -43,9 +43,13 @@ xr.set_options(
 
 ```{code-cell} python
 shape = (5, 10)
-xx = xr.DataArray(np.random.uniform(0, 10, size=shape), dims=("y", "x"))
-yy = xr.DataArray(np.random.uniform(0, 5, size=shape), dims=("y", "x"))
-data = (xx - 5)**2 + (yy - 2.5)**2
+xx = xr.DataArray(
+    np.random.uniform(0, 10, size=shape), dims=("y", "x")
+)
+yy = xr.DataArray(
+    np.random.uniform(0, 5, size=shape), dims=("y", "x")
+)
+data = (xx - 5) ** 2 + (yy - 2.5) ** 2
 
 ds = xr.Dataset(data_vars={"data": data}, coords={"xx": xx, "yy": yy})
 ds
@@ -119,8 +123,8 @@ import matplotlib.pyplot as plt
 
 ds_trajectory = xr.Dataset(
     coords={
-        "lat": ('trajectory', np.linspace(28, 30, 50)),
-        "lon": ('trajectory', np.linspace(-93, -88, 50)),
+        "lat": ("trajectory", np.linspace(28, 30, 50)),
+        "lon": ("trajectory", np.linspace(-93, -88, 50)),
     },
 )
 
@@ -130,8 +134,8 @@ ds_roms.salt.isel(s_rho=-1, ocean_time=0).plot(
 plt.plot(
     ds_trajectory.lon.data,
     ds_trajectory.lat.data,
-    marker='.',
-    color='k',
+    marker=".",
+    color="k",
     ms=4,
     ls="none",
 )
@@ -153,14 +157,18 @@ class SklearnGeoBallTreeAdapter(TreeAdapter):
     """Works with latitude-longitude values in degrees."""
 
     def __init__(self, points: np.ndarray, options: dict):
-        options.update({'metric': 'haversine'})
+        options.update({"metric": "haversine"})
         self._balltree = BallTree(np.deg2rad(points), **options)
 
-    def query(self, points: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    def query(
+        self, points: np.ndarray
+    ) -> tuple[np.ndarray, np.ndarray]:
         return self._balltree.query(np.deg2rad(points))
 
     def equals(self, other: "SklearnGeoBallTreeAdapter") -> bool:
-        return np.array_equal(self._balltree.data, other._balltree.data)
+        return np.array_equal(
+            self._balltree.data, other._balltree.data
+        )
 ```
 
 ```{note}

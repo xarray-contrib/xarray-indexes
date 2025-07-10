@@ -52,6 +52,7 @@ tags: [remove-cell]
 ---
 from xdggs.utils import GRID_REGISTRY, _extract_cell_id_variable
 
+
 def from_variables_patch(variables, *, options):
     _, var, _ = _extract_cell_id_variable(variables)
 
@@ -63,6 +64,7 @@ def from_variables_patch(variables, *, options):
     obj = cls.from_variables(variables, options=options)
     obj._pd_index.index.name = "cell_ids"
     return obj
+
 
 xdggs.DGGSIndex.from_variables = from_variables_patch
 ```
