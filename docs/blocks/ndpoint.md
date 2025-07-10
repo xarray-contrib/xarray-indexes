@@ -20,7 +20,7 @@ kernelspec:
    fast lookup of point data. Although experimental, it is possible to plug in
    alternative structures to `NDPointIndex` (See {ref}`advanced`).
 
-## Basic Example: Default KDTree
+## Basic example: default kd-tree
 
 Let's create a dataset with random points.
 
