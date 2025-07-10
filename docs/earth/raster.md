@@ -137,7 +137,7 @@ The coordinates on the combined dataset is equal to the original dataset
 combined.xindexes["x"].equals(da.xindexes["x"])
 ```
 
-This functionality extends to [multi-dimsensional tiling](https://rasterix.readthedocs.io/en/latest/raster_index/combining.html#combine-nested) using {py:func}`xarray.combine_nested` too!
+This functionality extends to [multi-dimensional tiling](https://rasterix.readthedocs.io/en/latest/raster_index/combining.html#combine-nested) using {py:func}`xarray.combine_nested` too!
 
 ### Tracking the affine transform
 
