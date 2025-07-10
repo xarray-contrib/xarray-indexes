@@ -26,7 +26,7 @@ code.literal {
     from var(--pst-color-on-background) h s calc(l - 15)
   );
 
-  font-size: 0.85em;
+  font-size: 0.9em;
   margin-left: 1.25em;
 }
 
@@ -44,7 +44,7 @@ html[data-theme="dark"] .xr-wrap {
 .xr-array-wrap,
 .xr-var-data,
 .xr-var-preview {
-  font-size: 0.9em;
+  /* font-size: 0.9em; */
 }
 .gp {
   color: darkorange;

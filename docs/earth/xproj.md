@@ -40,6 +40,7 @@ This dataset has no CRS information.
 
 ```{code-cell}
 ds_wgs84 = ds.proj.assign_crs(spatial_ref="epsg:4326")
+ds_wgs84.spatial_ref.attrs = ds_wgs84.proj.crs.to_cf()  # TODO: add to xproj
 ds_wgs84
 ```
 
@@ -54,6 +55,7 @@ To illustrate we will artificially create a new dataset with a different CRS:
 
 ```{code-cell}
 ds_wgs72 = ds_wgs84.proj.assign_crs(spatial_ref="epsg:4322", allow_override=True)
+ds_wgs72.spatial_ref.attrs = ds_wgs72.proj.crs.to_cf()  # TODO: add to xproj
 ds_wgs72
 ```
 
