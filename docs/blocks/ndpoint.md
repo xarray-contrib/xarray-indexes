@@ -121,9 +121,16 @@ ds_trajectory = xr.Dataset(
     },
 )
 
-ds_roms.salt.isel(s_rho=-1, ocean_time=0).plot(x="lon_rho", y="lat_rho")
+ds_roms.salt.isel(s_rho=-1, ocean_time=0).plot(
+    x="lon_rho", y="lat_rho", alpha=0.6
+)
 plt.plot(
-    ds_trajectory.lon.data, ds_trajectory.lat.data, marker='.', color='k', ms=4, ls="none",
+    ds_trajectory.lon.data,
+    ds_trajectory.lat.data,
+    marker='.',
+    color='k',
+    ms=4,
+    ls="none",
 )
 plt.show()
 ```
@@ -140,6 +147,7 @@ from xarray.indexes.nd_point_index import TreeAdapter
 
 
 class SklearnGeoBallTreeAdapter(TreeAdapter):
+    """Works with latitude-longitude values in degrees."""
 
     def __init__(self, points: np.ndarray, options: dict):
         options.update({'metric': 'haversine'})
@@ -149,7 +157,7 @@ class SklearnGeoBallTreeAdapter(TreeAdapter):
         return self._balltree.query(np.deg2rad(points))
 
     def equals(self, other: "SklearnGeoBallTreeAdapter") -> bool:
-        return np.array_equal(self._balltree.data, other._kdtree.data)
+        return np.array_equal(self._balltree.data, other._balltree.data)
 ```
 
 ```{note}
@@ -184,7 +192,18 @@ ds_roms_selection
 ```
 
 ```{code-cell} python
-plt.figure()
-ds_roms_selection.plot.scatter(x="lat_rho", y="lat_rho", hue="zeta")
+ds_roms.salt.isel(s_rho=-1, ocean_time=0).plot(
+    x="lon_rho", y="lat_rho", vmin=0, vmax=35, alpha=0.3
+)
+plt.scatter(
+    ds_trajectory.lon.data,
+    ds_trajectory.lat.data,
+    c=ds_roms_selection.isel(s_rho=-1, ocean_time=0).salt,
+    s=12,
+    vmin=0,
+    vmax=35,
+    edgecolors="k",
+    linewidths=0.5,
+)
 plt.show()
 ```
