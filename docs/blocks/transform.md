@@ -69,6 +69,7 @@ class WCSCoordinateTransform(xr.indexes.CoordinateTransform):
 
     More info: https://docs.astropy.org/en/latest/wcs/wcsapi.html
     """
+
     def __init__(self, wcs: WCS):
         pixel_axis_names = [
             pan or f"dim{i}"
@@ -77,7 +78,10 @@ class WCSCoordinateTransform(xr.indexes.CoordinateTransform):
         world_axis_names = [
             escape(wan or wphy or f"coord{i}")
             for i, (wan, wphy) in enumerate(
-                zip(wcs.world_axis_names, wcs.world_axis_physical_types)
+                zip(
+                    wcs.world_axis_names,
+                    wcs.world_axis_physical_types,
+                )
             )
         ]
         dim_size = {
@@ -85,10 +89,14 @@ class WCSCoordinateTransform(xr.indexes.CoordinateTransform):
             for name, size in zip(pixel_axis_names, wcs.array_shape)
         }
 
-        super().__init__(world_axis_names, dim_size, dtype=np.dtype(float))
+        super().__init__(
+            world_axis_names, dim_size, dtype=np.dtype(float)
+        )
         self.wcs = wcs
 
-    def forward(self, dim_positions: dict[str, Any]) -> dict[Hashable, Any]:
+    def forward(
+        self, dim_positions: dict[str, Any]
+    ) -> dict[Hashable, Any]:
         """Perform array -> world coordinate transformation."""
 
         pixel = [dim_positions[dim] for dim in self.dims]
@@ -96,7 +104,9 @@ class WCSCoordinateTransform(xr.indexes.CoordinateTransform):
 
         return {name: w for name, w in zip(self.coord_names, world)}
 
-    def reverse(self, coord_labels: dict[Hashable, Any]) -> dict[str, Any]:
+    def reverse(
+        self, coord_labels: dict[Hashable, Any]
+    ) -> dict[str, Any]:
         """Perform world -> array coordinate reverse transformation."""
 
         world = [coord_labels[name] for name in self.coord_names]
@@ -113,8 +123,8 @@ tags: [remove-cell]
 xr.set_options(
     display_expand_indexes=True,
     display_expand_data=True,
-);
-np.set_printoptions(precision=3, threshold=10, edgeitems=2);
+)
+np.set_printoptions(precision=3, threshold=10, edgeitems=2)
 ```
 
 ### Assigning
@@ -131,17 +141,19 @@ from astropy.utils.data import get_pkg_data_filename
 
 
 def open_fits_dataarray(filename, item=0):
-   hdu = fits.open(filename)[item]
-   wcs = WCS(hdu.header)
+    hdu = fits.open(filename)[item]
+    wcs = WCS(hdu.header)
 
-   transform = WCSCoordinateTransform(wcs)
-   index = xr.indexes.CoordinateTransformIndex(transform)
-   coords = xr.Coordinates.from_xindex(index)
+    transform = WCSCoordinateTransform(wcs)
+    index = xr.indexes.CoordinateTransformIndex(transform)
+    coords = xr.Coordinates.from_xindex(index)
 
-   return xr.DataArray(
-      hdu.data, coords=coords, dims=transform.dims, attrs={"wcs": wcs}
-   )
-
+    return xr.DataArray(
+        hdu.data,
+        coords=coords,
+        dims=transform.dims,
+        attrs={"wcs": wcs},
+    )
 ```
 
 Open a simple image with two celestial axes.

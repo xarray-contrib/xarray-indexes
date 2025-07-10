@@ -51,7 +51,9 @@ ds1
 Using {py:meth}`xarray.indexes.RangeIndex.linspace`.
 
 ```{code-cell} python
-idx2 = xr.indexes.RangeIndex.linspace(0.0, 1000.0, 1_000_000_000_000, dim="x")
+idx2 = xr.indexes.RangeIndex.linspace(
+    0.0, 1000.0, 1_000_000_000_000, dim="x"
+)
 
 ds2 = xr.Dataset(coords=xr.Coordinates.from_xindex(idx2))
 ds2

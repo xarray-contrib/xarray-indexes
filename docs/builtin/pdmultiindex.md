@@ -79,8 +79,7 @@ with existing coordinates sharing the same dimension.
 
 ```{code-cell} python
 ds_air = (
-    ds_air
-    .assign_coords(season=ds_air.time.dt.season)
+    ds_air.assign_coords(season=ds_air.time.dt.season)
     .rename_vars(time="datetime")
     .drop_indexes("datetime")
 )
@@ -89,7 +88,9 @@ ds_air
 ```
 
 ```{code-cell} python
-multi_indexed = ds_air.set_xindex(["season", "datetime"], xr.indexes.PandasMultiIndex)
+multi_indexed = ds_air.set_xindex(
+    ["season", "datetime"], xr.indexes.PandasMultiIndex
+)
 multi_indexed
 ```
 
@@ -120,7 +121,9 @@ Dataset or DataArray.
 ```{code-cell} python
 import pandas as pd
 
-midx = pd.MultiIndex.from_product([["a", "b"], [1, 2]], names=("foo", "bar"))
+midx = pd.MultiIndex.from_product(
+    [["a", "b"], [1, 2]], names=("foo", "bar")
+)
 midx
 ```
 

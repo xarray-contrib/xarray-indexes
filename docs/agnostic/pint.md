@@ -40,13 +40,17 @@ import numpy as np
 import xarray as xr
 
 xr.set_options(
-    display_expand_indexes=True, display_expand_attrs=False, display_expand_data=False
+    display_expand_indexes=True,
+    display_expand_attrs=False,
+    display_expand_data=False,
 )
 
 ds = (
     xr.tutorial.open_dataset("eraint_uvz")
     .load()
-    .assign_coords(month=lambda ds: ds["month"].assign_attrs({"units": "months"}))
+    .assign_coords(
+        month=lambda ds: ds["month"].assign_attrs({"units": "months"})
+    )
     .assign(windspeed=lambda ds: np.hypot(ds["u"], ds["v"]))
 )
 ds
@@ -74,8 +78,12 @@ With the `PintIndex`, selecting with quantities will convert the indexers to the
 ureg = pint_xarray.unit_registry
 
 quantified.sel(
-    latitude=slice(ureg.Quantity(4800, "arcmin"), ureg.Quantity(600, "arcmin")),
-    longitude=slice(ureg.Quantity(-10, "degree"), ureg.Quantity(np.pi, "radians")),
+    latitude=slice(
+        ureg.Quantity(4800, "arcmin"), ureg.Quantity(600, "arcmin")
+    ),
+    longitude=slice(
+        ureg.Quantity(-10, "degree"), ureg.Quantity(np.pi, "radians")
+    ),
 )
 ```
 
