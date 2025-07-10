@@ -92,16 +92,20 @@ cube.sel(county=cube.county[0])
 Lets index to counties that intersect the provided bounding box
 
 ```{code-cell}
-box = shapely.box(-97, 45, -99, 48)
+box = shapely.box(-125.4, 40, -120.0, 50)
 
 subset = cube.sel(county=box, method="intersects")
 subset
 ```
 
-Notice how we did that with {py:meth}`xarray.DataArray.sel`?!
-
 ```{code-cell}
-f, axes = subset.population.xvec.plot(col="year")
+---
+tags: [hide-input]
+---
+f, axes = subset.population.xvec.plot(col="year", robust=True)
 for ax in axes.flat:
     ax.plot(*box.boundary.xy, color='w')
+    ax.plot(*box.boundary.xy, color='k', lw=0.75)
 ```
+
+Notice how we did that with {py:meth}`xarray.DataArray.sel`?!

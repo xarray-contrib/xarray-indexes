@@ -112,6 +112,9 @@ The dataset above is represented on a curvilinear grid with 2-dimensional
 straight line trajectory through this field.
 
 ```{code-cell} python
+---
+tags: [hide-input]
+---
 import matplotlib.pyplot as plt
 
 ds_trajectory = xr.Dataset(
@@ -192,6 +195,9 @@ ds_roms_selection
 ```
 
 ```{code-cell} python
+---
+tags: [hide-input]
+---
 ds_roms.salt.isel(s_rho=-1, ocean_time=0).plot(
     x="lon_rho", y="lat_rho", vmin=0, vmax=35, alpha=0.3
 )

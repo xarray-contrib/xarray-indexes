@@ -42,7 +42,7 @@ xr.set_options(
 Using {py:meth}`xarray.indexes.RangeIndex.arange`.
 
 ```{code-cell} python
-idx1 = xr.indexes.RangeIndex.arange(0.0, 1000.0, 1e-3, dim="x")
+idx1 = xr.indexes.RangeIndex.arange(0.0, 1000.0, 1e-9, dim="x")
 
 ds1 = xr.Dataset(coords=xr.Coordinates.from_xindex(idx1))
 ds1
@@ -51,7 +51,7 @@ ds1
 Using {py:meth}`xarray.indexes.RangeIndex.linspace`.
 
 ```{code-cell} python
-idx2 = xr.indexes.RangeIndex.linspace(0.0, 1000.0, 1_000_000, dim="x")
+idx2 = xr.indexes.RangeIndex.linspace(0.0, 1000.0, 1_000_000_000_000, dim="x")
 
 ds2 = xr.Dataset(coords=xr.Coordinates.from_xindex(idx2))
 ds2
@@ -64,6 +64,12 @@ array values are not fully materialized in memory).
 
 ```{code-cell} python
 ds1.x
+```
+
+_If_ materialized, this would be a very large array!
+
+```{code-cell} python
+ds1.x.nbytes / 1024**4  # 7TB!
 ```
 
 ```{important}
