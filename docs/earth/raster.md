@@ -50,7 +50,7 @@ import xarray as xr
 
 xr.set_options(display_expand_indexes=True, display_expand_attrs=False, display_expand_data=False)
 
-source = "https://noaadata.apps.nsidc.org/NOAA/G02135/south/daily/geotiff/2024/01_Jan/S_20240101_concentration_v3.0.tif"
+source = "https://noaadata.apps.nsidc.org/NOAA/G02135/south/daily/geotiff/2024/01_Jan/S_20240101_concentration_v4.0.tif"
 
 da = xr.open_dataarray(source, engine="rasterio", backend_kwargs={"parse_coordinates": False})
 da
