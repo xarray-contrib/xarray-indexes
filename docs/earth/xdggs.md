@@ -46,29 +46,6 @@ ds = xdggs.tutorial.open_dataset("air_temperature", "healpix")
 ds
 ```
 
-```{code-cell} python
----
-tags: [remove-cell]
----
-from xdggs.utils import GRID_REGISTRY, _extract_cell_id_variable
-
-
-def from_variables_patch(variables, *, options):
-    _, var, _ = _extract_cell_id_variable(variables)
-
-    grid_name = var.attrs["grid_name"]
-    cls = GRID_REGISTRY.get(grid_name)
-    if cls is None:
-        raise ValueError(f"unknown DGGS grid name: {grid_name}")
-
-    obj = cls.from_variables(variables, options=options)
-    obj._pd_index.index.name = "cell_ids"
-    return obj
-
-
-xdggs.DGGSIndex.from_variables = from_variables_patch
-```
-
 with that, we can decode the metadata:
 
 ```{code-cell} python
