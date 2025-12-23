@@ -35,8 +35,9 @@ import xarray as xr
 ```
 
 ```{code-cell} ipython3
-:tags: [remove-cell]
-
+---
+tags: [remove-cell]
+---
 %xmode minimal
 xr.set_options(
     display_expand_indexes=True,
@@ -121,8 +122,9 @@ In the below plot we demonstrate what we are trying to produce. We would like to
 We can draw the straight line here easily using the lat/lon coord system, but there is no easy way to extract the data values using simple xarray indexes.
 
 ```{code-cell} ipython3
-:tags: [hide-input]
-
+---
+tags: [hide-input]
+---
 import matplotlib.pyplot as plt
 
 ds_trajectory = xr.Dataset(
@@ -173,8 +175,9 @@ ds_roms_selection
 Notice how in this plot the points we selected are now colored by the nearest underlying data value. This would not have been possible without the `NDPointIndex`.
 
 ```{code-cell} ipython3
-:tags: [hide-input]
-
+---
+tags: [hide-input]
+---
 ds_roms.salt.isel(s_rho=-1, ocean_time=0).plot(
     x="lon_rho", y="lat_rho", vmin=0, vmax=35, alpha=0.3
 )
@@ -197,10 +200,10 @@ plt.show()
 
 The default kd-tree structure used by {py:class}`~xarray.indexes.NDPointIndex` isn't the best suited for these latitude longitude coordinates, in part because it does not support the best distance metrics for latitude and longitude data.
 
-Fortunately, there is a way of using alternative strucutrs with the {py:class}`~xarray.indexes.TreeAdapter`. Here we can use a {py:class}`sklearn.neighbors.BallTree`, which suppports providing distance metrics such as `haversine` that will better work latitude and longitude data.
+Fortunately, there is a way of using alternative structures with the {py:class}`~xarray.indexes.TreeAdapter`. Here we can use a {py:class}`sklearn.neighbors.BallTree`, which supports providing distance metrics such as `haversine` that will better work latitude and longitude data.
 
 ```{note}
-Using alternative structures via custom 
+Using alternative structures via custom
 {py:class}`~xarray.indexes.TreeAdapter` subclasses is an
 experimental feature!
 
