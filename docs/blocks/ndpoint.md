@@ -107,9 +107,7 @@ plt.show()
 ## Advanced example
 
 This example is based on the Regional Ocean Modeling System (ROMS) [Xarray
-example](https://docs.xarray.dev/en/stable/examples/ROMS_ocean_model.html). In this dataset the data were recorded on a grid of `s_rho`, `eta_rho` and `xi_rho`. However we want to be able to query values based on `lat_rho` and `lon_rho` which are 2-dimensional coordinate variables. To achieve this we will need an `NDPointIndex`. 
-
-
+example](https://docs.xarray.dev/en/stable/examples/ROMS_ocean_model.html). In this dataset the data were recorded on a grid of `s_rho`, `eta_rho` and `xi_rho`. However we want to be able to query values based on `lat_rho` and `lon_rho` which are 2-dimensional coordinate variables. To achieve this we will need an `NDPointIndex`.
 
 ```{code-cell} ipython3
 ds_roms = xr.tutorial.open_dataset("ROMS_example")
@@ -148,7 +146,6 @@ plt.plot(
 plt.show()
 ```
 
-
 ### Assigning the Index
 
 First add the index to the lat and lon coord variable using `set_xindex`
@@ -173,6 +170,8 @@ ds_roms_selection = ds_roms_index.sel(
 ds_roms_selection
 ```
 
+Notice how in this plot the points we selected are now colored by the nearest underlying data value. This would not have been possible without the `NDPointIndex`.
+
 ```{code-cell} ipython3
 :tags: [hide-input]
 
@@ -191,8 +190,6 @@ plt.scatter(
 )
 plt.show()
 ```
-
-
 
 +++
 
