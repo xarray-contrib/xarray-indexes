@@ -116,7 +116,6 @@ caption: Building Blocks
 hidden:
 ---
 blocks/transform
-blocks/why-trees
 blocks/ndpoint
 ```
 

@@ -15,7 +15,7 @@ kernelspec:
 # Nearest neighbors with `NDPointIndex`
 
 ```{tip}
-**New to spatial trees?** Start with [Why KD-Trees?](why-trees.md) to learn how tree structures enable fast nearest-neighbor search, and when you need alternatives like Ball trees for geographic data.
+**New to spatial trees?** Start with [Tree-Based Indexing](https://tutorial.xarray.dev/advanced/indexing/why-trees.html) to learn how tree structures enable fast nearest-neighbor search, and when you need alternatives like Ball trees for geographic data.
 ```
 
 ## Highlights
@@ -289,7 +289,7 @@ plt.show()
 The default KD-tree uses Euclidean distance, which works well for most cases. However, for **geographic coordinates (lat/lon)**, this can give incorrect results at high latitudes because longitude degrees shrink toward the poles.
 
 ```{tip}
-See [Why KD-Trees? - The problem with geographic coordinates](why-trees.md#the-problem-with-geographic-coordinates) for a detailed explanation with visualizations.
+See [Tree-Based Indexing - The problem with geographic coordinates](https://tutorial.xarray.dev/advanced/indexing/why-trees.html#the-problem-with-geographic-coordinates) for a detailed explanation with visualizations.
 ```
 
 ### Using a Ball tree for geographic data
@@ -411,5 +411,5 @@ print("Ball tree is slower but uses haversine for correct great-circle distances
 | Very high dimensions (>20)             | Ball tree                | KD-trees degrade in high dimensions           |
 
 ```{seealso}
-[Why KD-Trees?](why-trees.md) for a visual explanation of how these tree structures work and why haversine matters for geographic data.
+[Tree-Based Indexing](https://tutorial.xarray.dev/advanced/indexing/why-trees.html) for a visual explanation of how these tree structures work and why haversine matters for geographic data.
 ```
