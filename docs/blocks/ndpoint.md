@@ -12,7 +12,7 @@ kernelspec:
   name: python3
 ---
 
-# Nearest neighbors with `NDPointIndex`
+# NDPointIndex
 
 ```{tip}
 **New to spatial trees?** Start with [Tree-Based Indexing](https://tutorial.xarray.dev/advanced/indexing/why-trees.html) to learn how tree structures enable fast nearest-neighbor search, and when you need alternatives like Ball trees for geographic data.
@@ -31,7 +31,7 @@ kernelspec:
 
 +++
 
-## Basic example: coloring a grid from scattered observations
+## Basic usage
 
 A common task: you have **scattered observations** and want to **color a regular grid** based on the nearest observation at each grid point. This requires finding the nearest neighbor for every grid cell.
 
@@ -181,7 +181,7 @@ plt.show()
 
 (advanced)=
 
-## Advanced example: coloring a trajectory from ocean model data
+## Advanced usage
 
 A real-world use case: you have ocean model output on a curvilinear grid and want to **color a trajectory** based on the nearest model values.
 
@@ -284,7 +284,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-## Alternative Tree Data Structures
+## Alternative trees
 
 The default KD-tree uses Euclidean distance, which works well for most cases. However, for **geographic coordinates (lat/lon)**, this can give incorrect results at high latitudes because longitude degrees shrink toward the poles.
 
@@ -400,7 +400,7 @@ print("\nThe tradeoff: KD-tree is faster but treats lat/lon as flat.")
 print("Ball tree is slower but uses haversine for correct great-circle distances.")
 ```
 
-## Summary: choosing the right tree
+## Choosing a tree
 
 | Use case                               | Recommended              | Why                                           |
 | -------------------------------------- | ------------------------ | --------------------------------------------- |
