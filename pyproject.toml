@@ -32,6 +32,7 @@ dependencies = [
     "astropy",
     "xarray @ git+https://github.com/pydata/xarray",
     "scikit-learn",
+    "xoak",
     "jupyterlab",
     "jupyterlab-vim",
     "ipykernel",
