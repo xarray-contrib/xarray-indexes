@@ -342,38 +342,134 @@ See [Tree-Based Indexing - The problem with geographic coordinates](https://tuto
 
 ### Using a Ball tree for geographic data
 
-For accurate great-circle distance calculations, you can plug in a Ball tree with the [haversine metric](https://en.wikipedia.org/wiki/Haversine_formula) using a custom {py:class}`~xarray.indexes.TreeAdapter`:
+For accurate great-circle distance calculations, you can plug in a Ball tree with the [haversine metric](https://en.wikipedia.org/wiki/Haversine_formula). The [xoak](https://xoak.readthedocs.io) package provides ready-made tree adapters for common use cases, including {class}`~xoak.SklearnGeoBallTreeAdapter` which wraps scikit-learn's `BallTree` with the haversine metric.
+
+Pass it as the `tree_adapter_cls` argument to `set_xindex` — everything else stays the same:
 
 ```{code-cell} ipython3
-from sklearn.neighbors import BallTree
-from xarray.indexes.nd_point_index import TreeAdapter
+from xoak import SklearnGeoBallTreeAdapter
 
-
-class SklearnGeoBallTreeAdapter(TreeAdapter):
-    """Works with latitude-longitude values in degrees."""
-
-    def __init__(self, points: np.ndarray, options: dict):
-        options.update({"metric": "haversine"})
-        self._balltree = BallTree(np.deg2rad(points), **options)
-
-    def query(
-        self, points: np.ndarray
-    ) -> tuple[np.ndarray, np.ndarray]:
-        return self._balltree.query(np.deg2rad(points))
-
-    def equals(self, other: "SklearnGeoBallTreeAdapter") -> bool:
-        return np.array_equal(
-            self._balltree.data, other._balltree.data
-        )
-```
-
-```{code-cell} ipython3
 ds_roms_ball_index = ds_roms.set_xindex(
     ("lat_rho", "lon_rho"),
     xr.indexes.NDPointIndex,
     tree_adapter_cls=SklearnGeoBallTreeAdapter,
 )
 ds_roms_ball_index
+```
+
+The adapter handles converting lat/lon from degrees to radians internally, so you can query with the same degree-valued coordinates as before.
+
+At high latitudes, longitude degrees are much shorter than latitude degrees. A KD-tree and Ball tree can pick **different** nearest neighbors for the same query:
+
+```{code-cell} ipython3
+---
+tags: [hide-input]
+---
+# Two points at 80°N: one east (along longitude), one north (along latitude)
+# The query sits between them — closer in *degrees* to the north point,
+# but closer in *km* to the east point.
+point_a = (80.0, 2.0)   # 2° east of query
+point_b = (80.5, 0.0)   # 0.5° north of query
+query = (80.0, 0.0)
+
+# Use 2D coords on a dummy grid (NDPointIndex requires shared dims)
+ds_demo = xr.Dataset(
+    {"label": (("i", "j"), [["A", "B"]])},
+    coords={
+        "lat": (("i", "j"), [[point_a[0], point_b[0]]]),
+        "lon": (("i", "j"), [[point_a[1], point_b[1]]]),
+    },
+)
+
+# KD-tree (Euclidean on degrees)
+ds_kd = ds_demo.set_xindex(("lat", "lon"), xr.indexes.NDPointIndex)
+result_kd = ds_kd.sel(lat=query[0], lon=query[1], method="nearest")
+
+# Ball tree (haversine)
+ds_ball = ds_demo.set_xindex(
+    ("lat", "lon"), xr.indexes.NDPointIndex,
+    tree_adapter_cls=SklearnGeoBallTreeAdapter,
+)
+result_ball = ds_ball.sel(lat=query[0], lon=query[1], method="nearest")
+
+kd_pick = (result_kd.lat.item(), result_kd.lon.item())
+ball_pick = (result_ball.lat.item(), result_ball.lon.item())
+
+km_per_deg_lon = 111.0 * np.cos(np.radians(80.0))
+km_to_a = abs(query[1] - point_a[1]) * km_per_deg_lon
+km_to_b = abs(query[0] - point_b[0]) * 111.0
+
+# Convert to km relative to query
+def to_km(lat, lon):
+    return (lon - query[1]) * km_per_deg_lon, (lat - query[0]) * 111.0
+
+a_km = to_km(*point_a)
+b_km = to_km(*point_b)
+q_km = (0.0, 0.0)
+
+fig, (ax_deg, ax_km) = plt.subplots(1, 2, figsize=(13, 5))
+
+for ax, coords, xlabel, ylabel, title, a_label, b_label in [
+    (ax_deg,
+     {"a": (point_a[1], point_a[0]), "b": (point_b[1], point_b[0]), "q": (query[1], query[0])},
+     "Longitude (°)", "Latitude (°)",
+     "In degrees: B looks closer",
+     f"A (2.0°)", f"B (0.5°)"),
+    (ax_km,
+     {"a": (a_km[0], a_km[1]), "b": (b_km[0], b_km[1]), "q": q_km},
+     "East-West (km)", "North-South (km)",
+     "In km: A is actually closer",
+     f"A ({km_to_a:.0f} km)", f"B ({km_to_b:.0f} km)"),
+]:
+    # Line to A (Ball tree / haversine picks this)
+    ax.annotate(
+        "", xy=coords["a"], xytext=coords["q"],
+        arrowprops=dict(arrowstyle="-", color="coral", lw=2, ls="--"), zorder=4,
+    )
+    # Line to B (KD-tree picks this)
+    ax.annotate(
+        "", xy=coords["b"], xytext=coords["q"],
+        arrowprops=dict(arrowstyle="-", color="steelblue", lw=2, ls="--"), zorder=4,
+    )
+
+    # Label the lines
+    mid_a = ((coords["q"][0] + coords["a"][0]) / 2, (coords["q"][1] + coords["a"][1]) / 2)
+    mid_b = ((coords["q"][0] + coords["b"][0]) / 2, (coords["q"][1] + coords["b"][1]) / 2)
+    ax.annotate("haversine", mid_a, xytext=(8, -10), textcoords="offset points",
+                fontsize=9, color="coral", fontstyle="italic")
+    ax.annotate("KD-tree", mid_b, xytext=(8, 4), textcoords="offset points",
+                fontsize=9, color="steelblue", fontstyle="italic")
+
+    # Points
+    ax.scatter(*coords["a"], c="coral", s=140, edgecolors="black", linewidths=1.5, zorder=6)
+    ax.scatter(*coords["b"], c="steelblue", s=140, edgecolors="black", linewidths=1.5, zorder=6)
+    ax.scatter(*coords["q"], c="red", s=180, marker="X",
+               edgecolors="darkred", linewidths=0.5, zorder=7)
+
+    # Point labels
+    ax.annotate(a_label, coords["a"], xytext=(12, -14), textcoords="offset points",
+                fontsize=10, fontweight="bold")
+    ax.annotate(b_label, coords["b"], xytext=(12, 8), textcoords="offset points",
+                fontsize=10, fontweight="bold")
+    ax.annotate("query", coords["q"], xytext=(12, -14), textcoords="offset points",
+                fontsize=10, color="red", fontweight="bold")
+
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    ax.set_title(title, fontweight="bold")
+    ax.grid(True, alpha=0.3)
+
+# Match x and y limits so distances are visually comparable
+deg_lim = max(abs(point_a[1] - query[1]), abs(point_b[0] - query[0])) * 1.3
+ax_deg.set_xlim(-deg_lim * 0.15, deg_lim)
+ax_deg.set_ylim(query[0] - deg_lim * 0.15, query[0] + deg_lim)
+
+km_lim = max(abs(a_km[0]), abs(a_km[1]), abs(b_km[0]), abs(b_km[1])) * 1.3
+ax_km.set_xlim(-km_lim * 0.15, km_lim)
+ax_km.set_ylim(-km_lim * 0.15, km_lim)
+
+plt.tight_layout()
+plt.show()
 ```
 
 ### Performance comparison
@@ -459,5 +555,6 @@ print("Ball tree is slower but uses haversine for correct great-circle distances
 | Very high dimensions (>20)             | Ball tree                | KD-trees degrade in high dimensions           |
 
 ```{seealso}
-[Tree-Based Indexing](https://tutorial.xarray.dev/advanced/indexing/why-trees.html) for a visual explanation of how these tree structures work and why haversine matters for geographic data.
+- [Tree-Based Indexing](https://tutorial.xarray.dev/advanced/indexing/why-trees.html) for a visual explanation of how these tree structures work and why haversine matters for geographic data.
+- [Building custom tree adapters](https://xoak.readthedocs.io/en/latest/examples/custom_indexes.html) for advanced use cases like implementing your own {py:class}`~xarray.indexes.TreeAdapter`.
 ```
