@@ -1,0 +1,48 @@
+[project]
+name = "xarray-indexes"
+version = "0.1.0"
+description = "Xarray indexes documentation and examples"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+dependencies = [
+    "pooch",
+    "netCDF4",
+    "matplotlib",
+    "sphinx",
+    "sphinx-autobuild>=2021.3.14",
+    "sphinx-copybutton",
+    "sphinx-remove-toctrees",
+    "sphinx-codeautolink",
+    "sphinx-design",
+    "myst-parser",
+    "myst-nb",
+    "sphinx-book-theme",
+    "numpydoc",
+    "sphinxext-opengraph[social_cards]",
+    "xdggs",
+    "rasterix",
+    "rioxarray",
+    "geopandas",
+    "geodatasets",
+    "xvec",
+    "rolodex @ git+https://github.com/dcherian/rolodex",
+    "pint-xarray",
+    "cf_xarray",
+    "astropy",
+    "xarray @ git+https://github.com/pydata/xarray",
+    "scikit-learn",
+    "xoak",
+    "jupyterlab",
+    "jupyterlab-vim",
+    "ipykernel",
+    "jupyter-collaboration>=4.2.0",
+]
+
+[tool.uv]
+package = false
+
+[dependency-groups]
+dev = [
+    "pre-commit",
+]
