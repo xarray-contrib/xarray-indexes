@@ -332,7 +332,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-## Alternative trees
+## Alternative trees with `xoak`
 
 The default KD-tree uses Euclidean distance, which works well for most cases. However, for **geographic coordinates (lat/lon)**, this can give incorrect results at high latitudes because longitude degrees shrink toward the poles.
 
