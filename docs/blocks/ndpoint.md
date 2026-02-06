@@ -12,7 +12,7 @@ kernelspec:
   name: python3
 ---
 
-# NDPointIndex
+# Nearest neighbors with `NDPointIndex`
 
 ```{tip}
 **New to spatial trees?** Start with [Tree-Based Indexing](https://tutorial.xarray.dev/advanced/indexing/why-trees.html) to learn how tree structures enable fast nearest-neighbor search, and when you need alternatives like Ball trees for geographic data.
@@ -117,6 +117,54 @@ Now we can query for nearest neighbors using familiar xarray syntax. Under the h
 
 ```{code-cell} ipython3
 ds_index.sel(xx=3.4, yy=4.2, method="nearest")
+```
+
+```{code-cell} ipython3
+---
+tags: [hide-input]
+---
+query_x, query_y = 3.4, 4.2
+result = ds_index.sel(xx=query_x, yy=query_y, method="nearest")
+nearest_x = result.xx.item()
+nearest_y = result.yy.item()
+
+fig, ax = plt.subplots(figsize=(10, 5))
+
+# All points at low alpha
+ax.scatter(
+    ds.xx.values.ravel(), ds.yy.values.ravel(),
+    c='steelblue', s=40, alpha=0.2, edgecolors='gray', linewidths=0.5, zorder=3,
+)
+
+# Line connecting query to nearest
+ax.annotate(
+    '', xy=(nearest_x, nearest_y), xytext=(query_x, query_y),
+    arrowprops=dict(arrowstyle='-', color='black', lw=1.5, ls='--'),
+    zorder=4,
+)
+
+# Nearest point highlighted
+ax.scatter(
+    nearest_x, nearest_y,
+    c='steelblue', s=120, edgecolors='black', linewidths=1.5, zorder=6,
+    label=f'nearest ({nearest_x:.1f}, {nearest_y:.1f})',
+)
+
+# Query point
+ax.scatter(
+    query_x, query_y,
+    c='red', s=120, marker='X', linewidths=0.5, edgecolors='darkred', zorder=6,
+    label=f'query ({query_x}, {query_y})',
+)
+
+ax.set_xlim(-0.5, 10.5)
+ax.set_ylim(-0.5, 5.5)
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_title('Nearest-neighbor lookup')
+ax.legend()
+plt.tight_layout()
+plt.show()
 ```
 
 ### Assigning values from scattered points to a grid
