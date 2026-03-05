@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 license = "Apache-2.0"
 dependencies = [
+    "pandas<3",
     "pooch",
     "netCDF4",
     "matplotlib",
