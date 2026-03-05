@@ -72,7 +72,8 @@ nb_remove_cell_tags = ["remove-cell"]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ["_build"]
+# Exclude .ipynb files since we use jupytext-paired .md files as the source
+exclude_patterns = ["_build", "**/*.ipynb"]
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = "igor"

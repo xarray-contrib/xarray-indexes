@@ -17,6 +17,7 @@ rasterix
 rioxarray
 geopandas
 geodatasets
+xoak
 xvec
 git+https://github.com/dcherian/rolodex
 pint-xarray
