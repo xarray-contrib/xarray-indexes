@@ -1,3 +1,4 @@
+pandas<3
 pooch
 netCDF4
 matplotlib
