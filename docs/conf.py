@@ -72,8 +72,18 @@ nb_remove_cell_tags = ["remove-cell"]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-# Exclude .ipynb files since we use jupytext-paired .md files as the source
-exclude_patterns = ["_build", "**/*.ipynb"]
+# Exclude .ipynb files that have a paired jupytext .md file
+# (the .md is the source of truth for those). Notebooks without
+# a paired .md (e.g. cfinterval.ipynb) are kept as-is.
+from pathlib import Path
+
+_ipynb_excludes = [
+    str(p.relative_to(Path(__file__).parent))
+    for p in Path(__file__).parent.rglob("*.ipynb")
+    if p.with_suffix(".md").exists()
+    and "_build" not in p.parts
+]
+exclude_patterns = ["_build"] + _ipynb_excludes
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = "igor"
